@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barsha & Abhisek — Our Forever Chapter</title>
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#9B1B30">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Barsha Wedding">
+
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bride: {
+              cardinal: '#9B1B30',      /* Bridal Alta Crimson */
+              rose: '#D84A6B',          /* Rani Pink / Bridal Rose */
+              deepmaroon: '#4A0817',    /* Velvet Berry Dark */
+              blush: '#FFF2F4',         /* Soft Blush Cream */
+              gold: '#DDB264',          /* Champagne Gold */
+              goldlight: '#F8E8C8',     /* Luminous Shimmer Gold */
+              golddark: '#A6792A',      /* Royal Dark Gold */
+              darkbg: '#140408'         /* Deep Rose Darkroom */
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            script: ['Pinyon Script', 'cursive'],
+            sans: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #140408;
+      color: #FFF2F4;
+      overflow-x: hidden;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .bridal-card {
+      background: rgba(30, 8, 14, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(221, 178, 100, 0.25);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bridal-card:hover {
+      border-color: rgba(221, 178, 100, 0.65);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(155, 27, 48, 0.3);
+    }
+    .text-gold-foil {
+      background: linear-gradient(135deg, #F8E8C8 0%, #DDB264 50%, #A6792A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    canvas#petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="selection:bg-bride-rose selection:text-white">
+
+  <!-- Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Sticky Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-bride-darkbg/85 backdrop-blur-md border-b border-bride-gold/20 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-bride-gold/50 flex items-center justify-center bg-bride-deepmaroon text-bride-goldlight font-cinzel text-sm font-bold shadow-md group-hover:scale-105 transition">
+          B&A
+        </div>
+        <span class="font-cinzel text-lg tracking-widest text-bride-goldlight font-bold">BARSHA & ABHISEK</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 font-cinzel text-xs tracking-widest text-stone-300">
+        <a href="#chronicles" class="hover:text-bride-gold transition">Ceremonies</a>
+        <a href="#journey" class="hover:text-bride-gold transition">Baraat Welcoming</a>
+        <a href="#culture" class="hover:text-bride-gold transition">Traditions</a>
+        <a href="#gallery" class="hover:text-bride-gold transition">Albums</a>
+        <a href="#cinema" class="hover:text-bride-gold transition">Cinema Hub</a>
+        <a href="#blessings" class="hover:text-bride-gold transition">Wishes</a>
+      </div>
+      <a href="#gallery" class="px-5 py-2 rounded-full border border-bride-gold/40 text-bride-goldlight text-xs font-cinzel tracking-widest uppercase hover:bg-bride-cardinal transition">
+        View Vaults
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="top" class="relative min-h-screen flex items-center justify-center pt-24 px-6 text-center">
+    <div class="relative z-20 max-w-4xl mx-auto space-y-6">
+      <span class="inline-block px-4 py-1.5 rounded-full border border-bride-gold/30 bg-bride-cardinal/40 text-bride-goldlight text-[11px] tracking-[0.35em] uppercase font-semibold">
+        The Bridal Chronicles • #BarshaWedsAbhisek
+      </span>
+      <h1 class="font-cinzel text-5xl sm:text-7xl font-bold tracking-tight text-gold-foil">
+        BARSHA & ABHISEK
+      </h1>
+      <p class="font-script text-3xl sm:text-4xl text-bride-rose capitalize">
+        Two souls, one eternal promise
+      </p>
+      <p class="text-xs sm:text-sm tracking-[0.25em] text-stone-300 uppercase font-light">
+        Wednesday, 22nd January 2025 • Katak & Brahmapur, Odisha, India
+      </p>
+      
+      <!-- Milestone Counter -->
+      <div class="grid grid-cols-4 gap-3 max-w-lg mx-auto pt-6" id="countdown-timer">
+        <div class="bridal-card p-3 rounded-xl"><span id="days" class="text-2xl font-bold text-bride-goldlight font-cinzel">--</span><span class="block text-[9px] uppercase tracking-wider text-stone-400">Days</span></div>
+        <div class="bridal-card p-3 rounded-xl"><span id="hours" class="text-2xl font-bold text-bride-goldlight font-cinzel">--</span><span class="block text-[9px] uppercase tracking-wider text-stone-400">Hours</span></div>
+        <div class="bridal-card p-3 rounded-xl"><span id="mins" class="text-2xl font-bold text-bride-goldlight font-cinzel">--</span><span class="block text-[9px] uppercase tracking-wider text-stone-400">Mins</span></div>
+        <div class="bridal-card p-3 rounded-xl"><span id="secs" class="text-2xl font-bold text-bride-goldlight font-cinzel">--</span><span class="block text-[9px] uppercase tracking-wider text-stone-400">Secs</span></div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-6">
+        <a href="#gallery" class="px-8 py-3.5 rounded-full bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-rose transition shadow-lg">
+          <i class="fa-solid fa-images mr-2"></i> Albums
+        </a>
+        <a href="#cinema" class="px-8 py-3.5 rounded-full bg-bride-deepmaroon text-bride-goldlight font-cinzel text-xs tracking-widest uppercase font-bold border border-bride-gold/40 hover:bg-bride-cardinal transition shadow-lg">
+          <i class="fa-solid fa-circle-play mr-2"></i> Cinema Hub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Sacred Chronicles (Chronological Cards) -->
+  <section id="chronicles" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
+    <div class="text-center mb-16">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Sacred Timetable</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">The Sacred Chronicles</h2>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Nirbandha -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">SACRED RITUAL 🪔</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">Nirbandha Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">The formal engagement sealed with divine coconut & betel nut offerings, forging lifelong bonds between both families.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>10:00 AM • Bishnu Mandir</span>
+          <a href="https://maps.app.goo.gl/7dJh3Nii4xzLmGke" target="_blank" class="hover:text-white underline">Directions ↗</a>
+        </div>
+      </div>
+
+      <!-- Ring Ceremony -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">RING EXCHANGE 💍</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">Ring Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">An evening of celebration, vows, and sparkling rings surrounded by family warmth and shared anticipation.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>12:00 PM • Hotel 7 Saat</span>
+          <a href="https://maps.app.goo.gl/v5cCfbC4zzZAS9Yw9" target="_blank" class="hover:text-white underline">Directions ↗</a>
+        </div>
+      </div>
+
+      <!-- Haldi & Mehendi -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">VIBRANT COLORS 🌼🌸</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">Haldi & Mehendi Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">Golden turmeric blessings and intricate bridal henna patterns gracing the bride’s hands with sisterly love.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>10:00 AM • Home - Bidanasi</span>
+          <a href="https://maps.app.goo.gl/i7zvu6CJtT21Z94K8" target="_blank" class="hover:text-white underline">Directions ↗</a>
+        </div>
+      </div>
+
+      <!-- The Wedding -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">THE SACRED DAY 🌸</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">Marriage Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">The holy Vedic vows, Hastaganthi, and seven sacred pheras beside the whispering ocean tides of Gopalpur.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>02:00 PM • OTDC Panthanivas</span>
+          <a href="https://maps.app.goo.gl/2p3RTx4nYEY6g7pz6" target="_blank" class="hover:text-white underline">Directions ↗</a>
+        </div>
+      </div>
+
+      <!-- Reception -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">CELEBRATION ✨</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">Reception Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">A grand evening of banquet, greetings, and heartfelt laughter with extended family and well-wishers.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>7:00 PM • JBS Garden, Tulsipur</span>
+          <span class="text-stone-400">Katak</span>
+        </div>
+      </div>
+
+      <!-- 1st Anniversary -->
+      <div class="bridal-card p-7 rounded-2xl flex flex-col justify-between">
+        <div>
+          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">MILESTONE REUNION 🥂</span>
+          <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mt-4 mb-2">1st Anniversary Ceremony</h3>
+          <p class="text-stone-300 text-xs leading-relaxed">Commemorating 365+ days of shared laughter, travel milestones, and an eternity yet to write together.</p>
+        </div>
+        <div class="border-t border-bride-gold/20 pt-4 mt-6 flex items-center justify-between text-xs text-bride-gold">
+          <span>12:00 PM • Hotel 7 Saat</span>
+          <span class="text-stone-400">Bhubaneswar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Welcoming The Baraat & Mandap Journey -->
+  <section id="journey" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
+    <div class="text-center mb-16">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Mandap Route</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">Welcoming the Baraat</h2>
+      <p class="text-xs text-stone-300 mt-2">Traversing from Katak through coastal plains down to Gopalpur</p>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bridal-card p-6 rounded-2xl text-center">
+        <div class="w-12 h-12 rounded-full bg-bride-cardinal/40 border border-bride-gold/50 flex items-center justify-center mx-auto mb-4 text-bride-goldlight text-lg">1</div>
+        <h4 class="font-cinzel text-lg font-bold text-bride-goldlight">Mishra Bhawan</h4>
+        <p class="text-xs text-stone-300 mt-1">Tarini Vihar, Bidanasi, Katak</p>
+        <span class="text-[10px] text-bride-gold uppercase tracking-wider block mt-3">Baraat Departure</span>
+      </div>
+      <div class="bridal-card p-6 rounded-2xl text-center">
+        <div class="w-12 h-12 rounded-full bg-bride-cardinal/40 border border-bride-gold/50 flex items-center justify-center mx-auto mb-4 text-bride-goldlight text-lg">2</div>
+        <h4 class="font-cinzel text-lg font-bold text-bride-goldlight">Hotel Aditya Inn</h4>
+        <p class="text-xs text-stone-300 mt-1">Mid-Highway Refreshment Stop</p>
+        <span class="text-[10px] text-bride-gold uppercase tracking-wider block mt-3">Highway Transit</span>
+      </div>
+      <div class="bridal-card p-6 rounded-2xl text-center">
+        <div class="w-12 h-12 rounded-full bg-bride-cardinal/40 border border-bride-gold/50 flex items-center justify-center mx-auto mb-4 text-bride-goldlight text-lg">3</div>
+        <h4 class="font-cinzel text-lg font-bold text-bride-goldlight">OTDC Panthanivas</h4>
+        <p class="text-xs text-stone-300 mt-1">OTDC Panthanivas, Gopalpur</p>
+        <span class="text-[10px] text-bride-rose uppercase tracking-wider block mt-3">Mandap Welcome & Aarti</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Odia Traditions Guide -->
+  <section id="culture" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
+    <div class="text-center mb-16">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Sacred Customs</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">Odia Bridal Traditions</h2>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Nirbandha</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">The formal alliance solemnized with the offering of betel nuts and coconuts before Lord Jagannath.</p>
+      </div>
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Baran & Aarti</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">A royal reception as the bride's mother welcomes the groom with sacred aarti and tilak at the mandap threshold.</p>
+      </div>
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Hastaganthi</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">The sacred tying of the sacred matrimonial knot uniting two souls through Vedic chants and elders' blessings.</p>
+      </div>
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Saptapadi</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">Seven sacred steps around the holy fire pledging mutual devotion, nourishment, and perpetual companionship.</p>
+      </div>
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Sala Bidha</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">A playful custom where the bride's brother gently taps the groom, establishing joyful brother-in-law camaraderie.</p>
+      </div>
+      <div class="bridal-card p-7 rounded-2xl">
+        <h4 class="font-serif text-2xl font-bold text-bride-rose mb-2">Gruhaprabesa</h4>
+        <p class="text-stone-300 text-xs leading-relaxed">The bride's auspicious entry into her matrimonial abode, ushering in peace and wealth with the gentle nudge of a rice pot.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Photo Vaults (Google Drive 9-Event Integration) -->
+  <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
+    <div class="text-center mb-10">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Treasured Memories</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">Captured Moments</h2>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Upload Portal Button -->
+    <div class="text-center mb-12">
+      <button onclick="openUploadPopup()" class="px-8 py-3 rounded-full bg-bride-gold text-bride-darkbg font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-goldlight transition shadow-xl inline-flex items-center gap-2">
+        <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Contribute Your Photos
+      </button>
+    </div>
+
+    <!-- Google Drive Vault Board -->
+    <div class="bridal-card p-8 rounded-3xl border border-bride-gold/30 mb-12 text-center">
+      <h3 class="font-cinzel text-xl font-bold text-bride-goldlight mb-2">The Complete Photo Vaults</h3>
+      <p class="font-serif text-sm italic text-stone-300 mb-6">"Every photograph is a doorway back to a moment that made life sacred."</p>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <button onclick="openVault('https://drive.google.com/drive/folders/12up7BLdUS_y4T-0MFwGs41QWGajo3rVh?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Engagement</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1Xk--ewNtaMtD_lhp-keJPA9HmkikKFP1?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Ring Ceremony</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1VkuU7tAddWIY57awvMOmiNTO2abBawQs?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Bardhara</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1kPljzIYm5Xi3vgxW4_st7cxBk7psPes7?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Haldi</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1xjs7aE3fb6fSf4CHwT2sWUZF3kpy2XmL?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Mehendi</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1mze05KvA6abneDeb5WDquVcLQGulL5ho?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Marriage</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1sKY1P6OJ-JAQkrK1YPLeqtQiLd6hSecy?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Pala</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1U67RbbZecvRUEKkNHLIMRogmwupRpg0K?usp=sharing')" class="p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">Reception</button>
+        <button onclick="openVault('https://drive.google.com/drive/folders/1ZUUtBCZpNpwBvOjGNalbDXy4L5J7zZJw?usp=sharing')" class="col-span-2 sm:col-span-1 p-3 rounded-xl bg-bride-cardinal/40 border border-bride-gold/30 hover:bg-bride-cardinal text-xs text-bride-goldlight font-cinzel transition">1st Anniversary</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Cinema Hub (YouTube Video Cards) -->
+  <section id="cinema" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
+    <div class="text-center mb-16">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Cinematic Gallery</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">The Royal Cinema Lounge</h2>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Active 1: Teaser of Engagement -->
+      <div class="bridal-card rounded-2xl overflow-hidden cursor-pointer" onclick="launchCinema('Teaser of Engagement Ceremony', 'iWriHLbstAg')">
+        <div class="relative aspect-video bg-black">
+          <img src="https://img.youtube.com/vi/iWriHLbstAg/hqdefault.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center hover:bg-black/20 transition">
+            <i class="fa-solid fa-circle-play text-4xl text-bride-gold"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-bride-gold font-bold">Teaser • 4K</span>
+          <h4 class="font-cinzel text-lg font-bold text-white mt-1">Teaser of Engagement</h4>
+        </div>
+      </div>
+
+      <!-- Active 2: Highlights of Engagement -->
+      <div class="bridal-card rounded-2xl overflow-hidden cursor-pointer" onclick="launchCinema('Highlights of Engagement Ceremony', 'SXwykKF85Bo')">
+        <div class="relative aspect-video bg-black">
+          <img src="https://img.youtube.com/vi/SXwykKF85Bo/hqdefault.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center hover:bg-black/20 transition">
+            <i class="fa-solid fa-circle-play text-4xl text-bride-gold"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-bride-gold font-bold">Highlights • 4K</span>
+          <h4 class="font-cinzel text-lg font-bold text-white mt-1">Highlights of Engagement</h4>
+        </div>
+      </div>
+
+      <!-- Active 3: Pre-Wedding Teaser -->
+      <div class="bridal-card rounded-2xl overflow-hidden cursor-pointer" onclick="launchCinema('Teaser of Pre-Wedding', '6Tr09QwXOAo')">
+        <div class="relative aspect-video bg-black">
+          <img src="https://img.youtube.com/vi/6Tr09QwXOAo/hqdefault.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center hover:bg-black/20 transition">
+            <i class="fa-solid fa-circle-play text-4xl text-bride-gold"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-bride-gold font-bold">Teaser • 4K</span>
+          <h4 class="font-cinzel text-lg font-bold text-white mt-1">Teaser of Pre-Wedding</h4>
+        </div>
+      </div>
+
+      <!-- Active 4: Pre-Wedding Shoot -->
+      <div class="bridal-card rounded-2xl overflow-hidden cursor-pointer" onclick="launchCinema('Pre-Wedding Shoot', '4DvobIfKaE4')">
+        <div class="relative aspect-video bg-black">
+          <img src="https://img.youtube.com/vi/4DvobIfKaE4/hqdefault.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center hover:bg-black/20 transition">
+            <i class="fa-solid fa-circle-play text-4xl text-bride-gold"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-bride-gold font-bold">Film • 4K</span>
+          <h4 class="font-cinzel text-lg font-bold text-white mt-1">Pre-Wedding Shoot</h4>
+        </div>
+      </div>
+
+      <!-- Active 5: Teaser of Wedding Ceremony -->
+      <div class="bridal-card rounded-2xl overflow-hidden cursor-pointer" onclick="launchCinema('Teaser of Wedding Ceremony', 'qY6Kui1D4qk')">
+        <div class="relative aspect-video bg-black">
+          <img src="https://img.youtube.com/vi/qY6Kui1D4qk/hqdefault.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center hover:bg-black/20 transition">
+            <i class="fa-solid fa-circle-play text-4xl text-bride-gold"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-bride-gold font-bold">Teaser • 4K</span>
+          <h4 class="font-cinzel text-lg font-bold text-white mt-1">Teaser of Wedding Ceremony</h4>
+        </div>
+      </div>
+
+      <!-- Pending 6: Wedding Highlights -->
+      <div class="bridal-card rounded-2xl overflow-hidden opacity-75">
+        <div class="relative aspect-video bg-bride-darkbg flex flex-col items-center justify-center border-b border-bride-gold/20">
+          <i class="fa-solid fa-hourglass-half text-bride-gold text-2xl mb-2 animate-pulse"></i>
+          <span class="text-[10px] tracking-widest uppercase font-cinzel text-stone-300">Premiering Soon</span>
+        </div>
+        <div class="p-5">
+          <span class="text-[9px] uppercase tracking-widest text-stone-400 font-semibold">Post-Production</span>
+          <h4 class="font-cinzel text-lg font-bold text-stone-300 mt-1">Highlights of Wedding</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Blessings Wall (Google Sheets Integration) -->
+  <section id="blessings" class="py-24 px-6 max-w-4xl mx-auto relative z-20">
+    <div class="text-center mb-16">
+      <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2">Evergreen Blessings</span>
+      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-gold-foil">Love Notes & Wishes</h2>
+      <div class="w-24 h-0.5 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="bridal-card p-8 rounded-3xl border border-bride-gold/30">
+      <form id="wishes-form" class="space-y-4">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-bride-gold mb-1">Your Name</label>
+          <input type="text" id="guest-name" required class="w-full bg-bride-darkbg/80 border border-bride-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-bride-rose">
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-bride-gold mb-1">Your Blessing</label>
+          <textarea id="guest-msg" rows="3" required class="w-full bg-bride-darkbg/80 border border-bride-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-bride-rose"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-rose transition shadow-md">
+          Bestow Blessing ✨
+        </button>
+      </form>
+
+      <!-- Wishes Feed -->
+      <div class="mt-8 border-t border-bride-gold/20 pt-6 space-y-4 max-h-72 overflow-y-auto" id="wishes-feed">
+        <div class="p-4 rounded-xl bg-bride-darkbg/50 border border-bride-gold/15">
+          <div class="flex justify-between items-center text-xs text-bride-gold mb-1">
+            <span class="font-bold">Mishra Family</span>
+            <span class="text-[10px] text-stone-400">22 Jan 2025</span>
+          </div>
+          <p class="text-stone-300 text-xs">May Mahaprabhu Jagannath shower you both with boundless prosperity and eternal happiness!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cinema Modal -->
+  <div id="cinema-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl bg-bride-darkbg rounded-2xl overflow-hidden border border-bride-gold/40 shadow-2xl">
+      <div class="p-4 flex items-center justify-between border-b border-bride-gold/20">
+        <h4 id="modal-video-title" class="font-cinzel text-sm sm:text-base font-bold text-bride-goldlight">Video Player</h4>
+        <button onclick="closeCinema()" class="text-stone-400 hover:text-white text-xl px-2">&times;</button>
+      </div>
+      <div class="relative aspect-video bg-black">
+        <iframe id="cinema-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Audio & Controls (Shifted up to clear Netlify footer badge) -->
+  <div class="fixed bottom-20 sm:bottom-24 right-6 z-50 flex flex-col items-end gap-3">
+    <button onclick="toggleAudio()" id="audio-btn" class="w-12 h-12 rounded-full bg-bride-cardinal/90 border border-bride-gold text-bride-goldlight flex items-center justify-center shadow-2xl hover:scale-105 transition">
+      <i class="fa-solid fa-music"></i>
+    </button>
+  </div>
+
+  <footer class="py-12 border-t border-bride-gold/20 text-center text-xs text-stone-400">
+    <p class="font-cinzel tracking-widest uppercase">Barsha & Abhisek • Forever In Love</p>
+    <p class="mt-2 text-[10px] text-stone-500">© 2025–2026. Made with divine blessings.</p>
+  </footer>
+
+  <script>
+    // Live Milestone Counter from 22 Jan 2025
+    const weddingDate = new Date("2025-01-22T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = now - weddingDate;
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('days').innerText = d;
+      document.getElementById('hours').innerText = h;
+      document.getElementById('mins').innerText = m;
+      document.getElementById('secs').innerText = s;
+    }, 1000);
+
+    // Vault opener
+    function openVault(url) {
+      window.open(url, '_blank');
+    }
+
+    // Google Form Upload Popup
+    function openUploadPopup() {
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLScOdQSsFED5G_DI14JJ8H7ISpHM05YpXNU1_f-cxba_trA40w/viewform?usp=publish-editor', 'UploadPhotos', 'width=700,height=800');
+    }
+
+    // Cinema Modal
+    function launchCinema(title, videoId) {
+      document.getElementById('modal-video-title').innerText = title;
+      document.getElementById('cinema-iframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      document.getElementById('cinema-modal').classList.remove('hidden');
+      document.getElementById('cinema-modal').classList.add('flex');
+    }
+    function closeCinema() {
+      document.getElementById('cinema-iframe').src = '';
+      document.getElementById('cinema-modal').classList.add('hidden');
+      document.getElementById('cinema-modal').classList.remove('flex');
+    }
+
+    // Web Audio Background Synthesizer
+    let audioCtx = null;
+    let isPlaying = false;
+    function toggleAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (!isPlaying) {
+        audioCtx.resume();
+        isPlaying = true;
+        document.getElementById('audio-btn').classList.add('animate-pulse');
+      } else {
+        audioCtx.suspend();
+        isPlaying = false;
+        document.getElementById('audio-btn').classList.remove('animate-pulse');
+      }
+    }
+
+    // Google Sheets Wishes Webhook
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxp3Lbxn4KJRPcAmgD8T4JiX0bJHev87geBFeE5iuUWjvRSd_qYosFfPed0yD0138P64g/exec';
+    
+    document.getElementById('wishes-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('guest-name').value;
+      const message = document.getElementById('guest-msg').value;
+      const dateStr = new Date().toLocaleDateString();
+
+      // Optimistic Render
+      const feed = document.getElementById('wishes-feed');
+      const item = document.createElement('div');
+      item.className = 'p-4 rounded-xl bg-bride-darkbg/50 border border-bride-gold/15';
+      item.innerHTML = `<div class="flex justify-between items-center text-xs text-bride-gold mb-1"><span class="font-bold">${name}</span><span class="text-[10px] text-stone-400">${dateStr}</span></div><p class="text-stone-300 text-xs">${message}</p>`;
+      feed.prepend(item);
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ name: name, message: message, date: dateStr })
+      }).catch(err => console.log('Stored locally fallback'));
+
+      this.reset();
+    });
+
+    // Floating Petals Animation
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petals = Array.from({ length: 24 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 6 + 4,
+      speedX: Math.random() * 1 - 0.5,
+      speedY: Math.random() * 1.5 + 0.8,
+      rotation: Math.random() * 360
+    }));
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(216, 74, 107, 0.4)';
+      petals.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.y > height) { p.y = -10; p.x = Math.random() * width; }
+        ctx.beginPath();
+        ctx.ellipse(p.x, p.y, p.size, p.size / 2, p.rotation, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+  </script>
+</body>
+</html>
