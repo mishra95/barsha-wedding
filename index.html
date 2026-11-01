@@ -27,16 +27,16 @@
         extend: {
           colors: {
             bride: {
-              cardinal: '#841B37',      /* Royal Rani Crimson */
-              rose: '#D24D6F',          /* Vibrant Bridal Pink */
-              velvet: '#460C1B',        /* Deep Berry Velvet */
-              midnight: '#18040A',      /* Darkroom Rose Background */
-              blush: '#FFF5F7',         /* Luminous Pearl Blush */
-              cream: '#FCF7F2',         /* Warm Bridal Ivory */
-              champagne: '#F7E7CE',     /* Soft Shimmer Gold */
-              gold: '#D4AF37',          /* Imperial Gold */
-              goldlight: '#F8E9C2',     /* Champagne Sparkle */
-              golddark: '#9E782F'       /* Antique Bronze */
+              cardinal: '#841B37',
+              rose: '#E25575',
+              velvet: '#460C1B',
+              midnight: '#18040A',
+              blush: '#FFF5F7',
+              cream: '#FCF7F2',
+              champagne: '#F7E7CE',
+              gold: '#D4AF37',
+              goldlight: '#F8E9C2',
+              golddark: '#9E782F'
             }
           },
           fontFamily: {
@@ -62,19 +62,28 @@
       font-family: 'Montserrat', sans-serif;
     }
     
-    /* Gold Foil Typography */
     .gold-foil {
       background: linear-gradient(135deg, #FFE8A3 0%, #D4AF37 40%, #F5C542 65%, #996515 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .rose-gold-foil {
-      background: linear-gradient(135deg, #FFDFD3 0%, #E2798E 45%, #D4AF37 75%, #A23A56 100%);
+      background: linear-gradient(135deg, #FFE2E6 0%, #F48BA2 35%, #E5B869 70%, #C43D5B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Modern Glassmorphic Cards */
+    /* Glow Effect for Navigation Links (Screenshot 3) */
+    .nav-glow-link {
+      transition: all 0.3s ease-in-out;
+      text-shadow: 0 0 0px rgba(212, 175, 55, 0);
+    }
+    .nav-glow-link:hover {
+      color: #FFF2B2 !important;
+      text-shadow: 0 0 14px rgba(212, 175, 55, 0.9), 0 0 24px rgba(226, 85, 117, 0.6);
+      transform: translateY(-1px);
+    }
+
     .glass-card-light {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(18px);
@@ -101,23 +110,21 @@
       box-shadow: 0 22px 46px -8px rgba(132, 27, 55, 0.4);
     }
 
-    /* Atmospheric Hero Backdrop */
     .hero-cinematic-bg {
       position: absolute;
       inset: 0;
       background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85');
       background-size: cover;
       background-position: center 35%;
-      filter: saturate(1.15) brightness(0.45);
+      filter: saturate(1.15) brightness(0.42);
     }
     .hero-vignette-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(30, 4, 10, 0.5) 0%, rgba(20, 2, 7, 0.88) 70%, rgba(10, 1, 4, 0.98) 100%),
+      background: radial-gradient(circle at center, rgba(30, 4, 10, 0.48) 0%, rgba(20, 2, 7, 0.88) 70%, rgba(10, 1, 4, 0.98) 100%),
                   linear-gradient(to bottom, rgba(24, 4, 10, 0.75) 0%, transparent 35%, transparent 75%, #FFF5F7 100%);
     }
 
-    /* Coastal Road Journey Backdrop */
     .baraat-cinematic-bg {
       position: absolute;
       inset: 0;
@@ -133,7 +140,6 @@
                   linear-gradient(to bottom, #FFF5F7 0%, transparent 15%, transparent 85%, #FCF7F2 100%);
     }
 
-    /* Canvas Particles */
     #petalCanvas {
       position: fixed;
       top: 0;
@@ -159,7 +165,7 @@
   <canvas id="petalCanvas"></canvas>
 
   <!-- Sticky Luxury Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-bride-midnight/80 backdrop-blur-xl border-b border-bride-gold/30 px-6 py-3.5 transition-all">
+  <nav class="fixed top-0 left-0 w-full z-40 bg-bride-midnight/85 backdrop-blur-xl border-b border-bride-gold/30 px-6 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Monogram Crest Only -->
@@ -169,14 +175,14 @@
         </div>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden lg:flex items-center gap-7 text-[11px] uppercase tracking-[0.22em] font-semibold text-bride-goldlight/90">
-        <a href="#chronicles" class="hover:text-white transition">Ceremonies</a>
-        <a href="#journey" class="hover:text-white transition">Baraat Welcoming</a>
-        <a href="#culture" class="hover:text-white transition">Traditions</a>
-        <a href="#gallery" class="hover:text-white transition">Albums</a>
-        <a href="#cinema" class="hover:text-white transition">Cinema Hub</a>
-        <a href="#blessings" class="hover:text-white transition">Wishes</a>
+      <!-- Glowing Navigation Links (Screenshot 3 Updated) -->
+      <div class="hidden lg:flex items-center gap-7 text-[11px] uppercase tracking-[0.24em] font-semibold text-bride-goldlight/90">
+        <a href="#chronicles" class="nav-glow-link">Ceremonies</a>
+        <a href="#journey" class="nav-glow-link">Baraat Welcoming</a>
+        <a href="#culture" class="nav-glow-link">Traditions</a>
+        <a href="#gallery" class="nav-glow-link">Albums</a>
+        <a href="#cinema" class="nav-glow-link">Cinema Hub</a>
+        <a href="#blessings" class="nav-glow-link">Wishes</a>
       </div>
 
       <!-- Pill Share Button -->
@@ -190,34 +196,47 @@
     </div>
   </nav>
 
-  <!-- ================= SECTION 1: HERO (Dark Floral Backdrop with Single-Line Title) ================= -->
+  <!-- ================= SECTION 1: HERO ================= -->
   <header id="top" class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-20 px-4 sm:px-6 text-center overflow-hidden">
     <div class="hero-cinematic-bg"></div>
     <div class="hero-vignette-overlay"></div>
     
     <div class="relative z-30 max-w-6xl mx-auto space-y-6 text-white w-full">
       
-      <div class="flex flex-wrap items-center justify-center gap-2 text-[10px] sm:text-xs tracking-widest uppercase font-semibold text-bride-goldlight">
-        <span class="px-4 py-1.5 rounded-full bg-bride-cardinal/60 backdrop-blur-md border border-bride-gold/30">#BarshaWedsAbhisek</span>
-        <span class="px-4 py-1.5 rounded-full bg-bride-cardinal/60 backdrop-blur-md border border-bride-gold/30">#TheBridalChronicles</span>
-        <span class="px-4 py-1.5 rounded-full bg-bride-cardinal/60 backdrop-blur-md border border-bride-gold/30">#Abhisha</span>
+      <!-- Redesigned Tags (Screenshot 4: Distinct non-button styling with pearl shimmer) -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-medium">
+        <span class="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-rose-300/30 text-rose-100 shadow-sm">
+          #BARSHAWEDSABHISEK
+        </span>
+        <span class="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-amber-300/30 text-amber-100 shadow-sm">
+          #THEBRIDALCHRONICLES
+        </span>
+        <span class="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-rose-300/30 text-rose-100 shadow-sm">
+          #ABHISHA
+        </span>
       </div>
 
-      <!-- Single-Line Responsive Title -->
+      <!-- Single-Line Title -->
       <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-normal sm:tracking-wide uppercase gold-foil drop-shadow-2xl whitespace-nowrap overflow-hidden text-ellipsis py-2">
         BARSHA & ABHISEK
       </h1>
 
-      <p class="font-script text-3xl sm:text-5xl md:text-6xl text-bride-rose font-normal drop-shadow-lg">
-        Two Souls, One Eternal Promise
+      <!-- Upgraded Poetic Bridal Quote (Screenshot 2) -->
+      <p class="font-script text-3xl sm:text-5xl md:text-6xl rose-gold-foil font-normal drop-shadow-lg">
+        Bound by Vedic Vows, Written in the Stars
       </p>
 
-      <p class="text-xs sm:text-sm tracking-[0.28em] uppercase text-stone-200 font-light max-w-2xl mx-auto">
-        Wednesday, 22nd January 2025 • Katak & Brahmapur, Odisha, India
-      </p>
+      <!-- Stylish Ceremonial Subtitle (Screenshot 1: Updated Date, Day & Venues) -->
+      <div class="flex items-center justify-center max-w-3xl mx-auto pt-1">
+        <div class="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent to-bride-gold/70"></div>
+        <p class="px-3 sm:px-5 text-[11px] sm:text-xs md:text-sm tracking-[0.28em] sm:tracking-[0.32em] uppercase text-stone-200 font-medium drop-shadow-md">
+          22nd January 2025 <span class="text-bride-gold px-1">•</span> Wednesday <span class="text-bride-gold px-1">•</span> Brahmapur & Katak, Odisha, India
+        </p>
+        <div class="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent to-bride-gold/70"></div>
+      </div>
 
       <!-- Glassmorphic Married Milestone Counter -->
-      <div class="max-w-xl mx-auto bg-white/95 backdrop-blur-xl rounded-3xl p-5 sm:p-7 border border-bride-gold/50 shadow-2xl text-bride-midnight">
+      <div class="max-w-xl mx-auto bg-white/95 backdrop-blur-xl rounded-3xl p-5 sm:p-7 border border-bride-gold/50 shadow-2xl text-bride-midnight mt-4">
         <p class="text-[10px] uppercase tracking-[0.3em] text-bride-cardinal font-bold mb-3 flex items-center justify-center gap-2">
           <span>🌸</span> SACRED CHAPTER IN CONTINUITY <span>🌸</span>
         </p>
@@ -260,7 +279,7 @@
     </div>
   </header>
 
-  <!-- ================= SECTION 2: SACRED CHRONICLES (Pearl Blush Palette) ================= -->
+  <!-- ================= SECTION 2: SACRED CHRONICLES ================= -->
   <section id="chronicles" class="py-24 px-6 max-w-7xl mx-auto relative z-30">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Timetable</span>
@@ -351,7 +370,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 3: BARAAT ROAD JOURNEY (Coastal Highway Image Backdrop) ================= -->
+  <!-- ================= SECTION 3: BARAAT ROAD JOURNEY ================= -->
   <section id="journey" class="py-28 relative z-30 overflow-hidden text-white border-y border-bride-gold/30">
     <div class="baraat-cinematic-bg"></div>
     <div class="baraat-vignette-overlay"></div>
@@ -400,7 +419,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 4: ODIA TRADITIONS (Warm Ivory & Champagne) ================= -->
+  <!-- ================= SECTION 4: ODIA TRADITIONS ================= -->
   <section id="culture" class="py-24 px-6 max-w-7xl mx-auto relative z-30 bg-bride-cream/60">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Customs</span>
@@ -436,7 +455,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 5: PHOTO VAULTS (Crisp Studio White with 9 Google Drive Vaults) ================= -->
+  <!-- ================= SECTION 5: PHOTO VAULTS ================= -->
   <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-30">
     <div class="text-center mb-10">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Visual Keepsakes</span>
@@ -470,7 +489,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 6: CINEMA HUB (Midnight Velvet Palette with YouTube Cards) ================= -->
+  <!-- ================= SECTION 6: CINEMA HUB ================= -->
   <section id="cinema" class="py-24 bg-bride-midnight text-white relative z-30 overflow-hidden border-t border-bride-gold/30">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
@@ -567,7 +586,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 7: BLESSINGS WALL (Warm Rose Cream Palette) ================= -->
+  <!-- ================= SECTION 7: BLESSINGS WALL ================= -->
   <section id="blessings" class="py-24 px-6 max-w-4xl mx-auto relative z-30">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Evergreen Blessings</span>
@@ -637,7 +656,6 @@
 
   <!-- 3 Floating Quick Action Buttons -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-    
     <!-- 1. Download App -->
     <button id="installAppBtn" onclick="triggerPwaInstall()" class="w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Install Barsha Wedding App">
       <i class="fa-solid fa-download text-base"></i>
@@ -648,7 +666,7 @@
       <i class="fa-solid fa-qrcode text-base"></i>
     </button>
 
-    <!-- 3. Ambient Music (50% Volume, Pauses on Video & Minimized) -->
+    <!-- 3. Ambient Music (50% Volume, Auto Pauses on Video & Minimized) -->
     <button id="musicToggleBtn" onclick="toggleAudio()" class="w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Play Ambient Music">
       <i id="audioIcon" class="fa-solid fa-music text-base"></i>
     </button>
@@ -676,17 +694,14 @@
       document.getElementById('secs').innerText = s;
     }, 1000);
 
-    // Google Drive Vault Opener
     function openVault(url) {
       window.open(url, '_blank');
     }
 
-    // Google Form Upload Popup
     function openUploadPopup() {
       window.open('https://docs.google.com/forms/d/e/1FAIpQLScOdQSsFED5G_DI14JJ8H7ISpHM05YpXNU1_f-cxba_trA40w/viewform?usp=publish-editor', 'UploadPhotos', 'width=700,height=800');
     }
 
-    // Web Share API
     function triggerShareAction() {
       if (navigator.share) {
         navigator.share({
@@ -699,7 +714,6 @@
       }
     }
 
-    // QR Code & Share Modal
     function openShareModal() {
       const currentUrl = window.location.href;
       document.getElementById('qrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(currentUrl)}`;
@@ -716,7 +730,7 @@
       closeShareModal();
     }
 
-    // Ambient Synthesizer (Tuned to 50% Volume, Pauses on Video and Minimized)
+    // Ambient Synthesizer (50% Volume Gain Ceiling)
     let audioCtx = null;
     let isPlaying = false;
     let musicTimer = null;
@@ -747,7 +761,7 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(chords[idx % chords.length], audioCtx.currentTime);
         
-        // 50% Volume Gain Ceiling
+        // Tuned to 50% max output volume
         gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
         
@@ -772,7 +786,7 @@
       }
     });
 
-    // Cinema Modal Functions (Auto stops ambient music when video opens)
+    // Auto-pause music when video plays
     function launchCinema(title, videoId) {
       stopAudio();
       document.getElementById('modal-video-title').innerText = title;
@@ -786,7 +800,7 @@
       document.getElementById('cinema-modal').classList.remove('flex');
     }
 
-    // PWA Install Prompt
+    // PWA Prompt
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
@@ -799,9 +813,6 @@
       if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('App install accepted');
-          }
           deferredPrompt = null;
         });
       } else {
@@ -816,7 +827,7 @@
       e.preventDefault();
       const name = document.getElementById('guest-name').value;
       const message = document.getElementById('guest-msg').value;
-      const dateStr = new Date().toLocaleDateString();
+      const dateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
       const feed = document.getElementById('wishes-feed');
       const item = document.createElement('div');
@@ -853,7 +864,7 @@
 
     function animatePetals() {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'rgba(210, 77, 111, 0.4)';
+      ctx.fillStyle = 'rgba(226, 85, 117, 0.4)';
       petals.forEach(p => {
         p.x += p.speedX;
         p.y += p.speedY;
