@@ -32,16 +32,16 @@
         extend: {
           colors: {
             bride: {
-              cardinal: '#841B37',      /* Royal Rani Crimson */
-              rose: '#E25575',          /* Vibrant Bridal Pink */
-              velvet: '#460C1B',        /* Deep Berry Velvet */
-              midnight: '#18040A',      /* Darkroom Rose Background */
-              blush: '#FFF5F7',         /* Luminous Pearl Blush */
-              cream: '#FCF7F2',         /* Warm Bridal Ivory */
-              champagne: '#F7E7CE',     /* Soft Shimmer Gold */
-              gold: '#D4AF37',          /* Imperial Gold */
-              goldlight: '#F8E9C2',     /* Champagne Sparkle */
-              golddark: '#9E782F'       /* Antique Bronze */
+              cardinal: '#841B37',
+              rose: '#E25575',
+              velvet: '#460C1B',
+              midnight: '#18040A',
+              blush: '#FFF5F7',
+              cream: '#FCF7F2',
+              champagne: '#F7E7CE',
+              gold: '#D4AF37',
+              goldlight: '#F8E9C2',
+              golddark: '#9E782F'
             }
           },
           fontFamily: {
@@ -154,6 +154,16 @@
       z-index: 25;
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @keyframes floatArrow {
       0%, 100% { transform: translateY(0); opacity: 0.8; }
       50% { transform: translateY(8px); opacity: 1; }
@@ -224,13 +234,13 @@
   </nav>
 
   <!-- ================= SECTION 1: HERO ================= -->
-  <header class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-20 px-4 sm:px-6 text-center overflow-hidden">
+  <header class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-20 px-4 sm:px-6 text-center overflow-hidden reveal active">
     <div class="hero-cinematic-bg"></div>
     <div class="hero-vignette-overlay"></div>
     
     <div class="relative z-30 max-w-6xl mx-auto space-y-6 text-white w-full">
       
-      <!-- Lightweight Frosted Badges -->
+      <!-- Badges -->
       <div class="flex flex-wrap items-center justify-center gap-3 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-medium">
         <span class="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-rose-300/30 text-rose-100 shadow-sm">
           #BARSHAWEDSABHISEK
@@ -299,7 +309,7 @@
 
     </div>
 
-    <!-- Arrow to Chronicles (Requirement 1) -->
+    <!-- Arrow to Chronicles -->
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
       <a href="#chronicles" class="text-bride-goldlight/80 hover:text-white transition animate-float block cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -308,7 +318,7 @@
   </header>
 
   <!-- ================= SECTION 2: SACRED CHRONICLES ================= -->
-  <section id="chronicles" class="py-24 px-6 max-w-7xl mx-auto relative z-30">
+  <section id="chronicles" class="py-24 px-6 max-w-7xl mx-auto relative z-30 reveal">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Timetable</span>
       <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-bride-cardinal">The Sacred Chronicles</h2>
@@ -397,7 +407,7 @@
 
     </div>
 
-    <!-- Arrow to Baraat Journey (Requirement 1) -->
+    <!-- Arrow to Baraat Journey -->
     <div class="text-center mt-16">
       <a href="#journey" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -406,7 +416,7 @@
   </section>
 
   <!-- ================= SECTION 3: BARAAT ROAD JOURNEY ================= -->
-  <section id="journey" class="py-28 relative z-30 overflow-hidden text-white border-y border-bride-gold/30">
+  <section id="journey" class="py-28 relative z-30 overflow-hidden text-white border-y border-bride-gold/30 reveal">
     <div class="baraat-cinematic-bg"></div>
     <div class="baraat-vignette-overlay"></div>
 
@@ -420,7 +430,6 @@
         <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full shadow-lg"></div>
       </div>
 
-      <!-- Identical Cards & App-Proof Geo Links (Requirements 2 & 3) -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
         <div class="glass-card-light p-8 rounded-3xl text-center text-bride-midnight transform hover:-translate-y-2 transition-transform duration-300">
           <div class="w-16 h-16 rounded-full bg-bride-cardinal text-bride-goldlight mx-auto flex items-center justify-center text-2xl font-bold mb-4 shadow-xl border border-bride-gold/40">1</div>
@@ -453,7 +462,7 @@
         </div>
       </div>
 
-      <!-- Arrow to Traditions (Requirement 1) -->
+      <!-- Arrow to Traditions -->
       <div class="text-center mt-16">
         <a href="#culture" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
           <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -463,14 +472,13 @@
   </section>
 
   <!-- ================= SECTION 4: ODIA TRADITIONS ================= -->
-  <section id="culture" class="py-24 px-6 max-w-7xl mx-auto relative z-30 bg-bride-cream/60">
+  <section id="culture" class="py-24 px-6 max-w-7xl mx-auto relative z-30 bg-bride-cream/60 reveal">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Customs</span>
       <h2 class="font-cinzel text-3xl sm:text-5xl text-bride-cardinal font-bold">Odia Bridal Traditions</h2>
       <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
     </div>
 
-    <!-- Updated as per Exact User Details (Requirement 4) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="glass-card-light p-7 rounded-2xl">
         <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Nirbandha</h4>
@@ -498,7 +506,7 @@
       </div>
     </div>
 
-    <!-- Arrow to Albums (Requirement 1) -->
+    <!-- Arrow to Albums -->
     <div class="text-center mt-16">
       <a href="#gallery" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -507,7 +515,7 @@
   </section>
 
   <!-- ================= SECTION 5: ALBUMS & PHOTO GALLERY ================= -->
-  <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-30">
+  <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-30 reveal">
     <div class="text-center mb-10">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Treasured Memories</span>
       <h2 class="font-cinzel text-4xl sm:text-5xl text-bride-cardinal font-bold">Captured Moments</h2>
@@ -521,7 +529,7 @@
       </button>
     </div>
 
-    <!-- Category Filter Tabs (Requirement 5 & 6) -->
+    <!-- Category Filter Tabs with Smooth Offset Alignment -->
     <div id="galleryFilters" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 relative z-20">
       <button id="btn-all" onclick="filterGallery('all')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-bride-cardinal text-white shadow-md border border-bride-gold/40">All Moments</button>
       <button id="btn-engagement" onclick="filterGallery('engagement')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Engagement</button>
@@ -535,7 +543,7 @@
       <button id="btn-anniversary" onclick="filterGallery('anniversary')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">1st Anniversary</button>
     </div>
 
-    <!-- Gallery Grid with Dummy Photos & Interactive Album Cards (Requirement 5 & 6) -->
+    <!-- Gallery Grid with Album Covers & Photos -->
     <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
 
       <!-- Engagement -->
@@ -787,7 +795,7 @@
       </div>
     </div>
 
-    <!-- Arrow to Cinema (Requirement 1) -->
+    <!-- Arrow to Cinema -->
     <div class="text-center mt-16">
       <a href="#cinema" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -796,7 +804,7 @@
   </section>
 
   <!-- ================= SECTION 6: THE CINEMA HUB ================= -->
-  <section id="cinema" class="py-24 bg-bride-midnight text-white relative z-30 overflow-hidden border-t border-bride-gold/30">
+  <section id="cinema" class="py-24 bg-bride-midnight text-white relative z-30 overflow-hidden border-t border-bride-gold/30 reveal">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       
       <div class="text-center mb-10">
@@ -817,7 +825,7 @@
         </button>
       </div>
 
-      <!-- Cinema Category Filter Tabs (Requirement 7 & 8) -->
+      <!-- Cinema Category Filter Tabs -->
       <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
         <button id="cinema-btn-all" onclick="filterCinema('all')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-bride-cardinal text-bride-goldlight border border-bride-gold/60 shadow-lg">All Events</button>
         <button id="cinema-btn-engagement" onclick="filterCinema('engagement')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Engagement</button>
@@ -826,7 +834,7 @@
         <button id="cinema-btn-wedding" onclick="filterCinema('wedding')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Wedding</button>
       </div>
 
-      <!-- Cinema Cards Grid with Dummy / Lock Cards as per Screenshot 8 (Requirement 7 & 8) -->
+      <!-- Cinema Cards Grid with Dummy / Lock Cards -->
       <div id="cinemaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
 
         <!-- 1. Teaser of Engagement -->
@@ -867,7 +875,7 @@
           </div>
         </div>
 
-        <!-- 3. Engagement Ceremony (Dummy In Post-Production Card as per Image 8) -->
+        <!-- 3. Engagement Ceremony (Dummy Lock) -->
         <div class="glass-card-dark rounded-3xl overflow-hidden relative cursor-default" data-cat="engagement">
           <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
             <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover filter blur-[3px] brightness-75">
@@ -998,7 +1006,7 @@
 
       </div>
 
-      <!-- Arrow to Our Story (Requirement 1) -->
+      <!-- Arrow to Our Story -->
       <div class="text-center mt-16">
         <a href="#anniversary" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
           <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -1007,8 +1015,8 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 7: THE CHAPTER CONTINUES (Requirement 9) ================= -->
-  <section id="anniversary" class="py-28 px-6 max-w-7xl mx-auto relative z-30">
+  <!-- ================= SECTION 7: THE CHAPTER CONTINUES ================= -->
+  <section id="anniversary" class="py-28 px-6 max-w-7xl mx-auto relative z-30 reveal">
     <div class="text-center mb-16">
       <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">
         A Sacred Milestone Surpassed • Still Counting Forever
@@ -1110,7 +1118,7 @@
 
     </div>
 
-    <!-- Arrow to Wishes (Requirement 1) -->
+    <!-- Arrow to Wishes -->
     <div class="text-center mt-16">
       <a href="#blessings" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
@@ -1118,8 +1126,8 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 8: GUEST BLESSINGS WALL (Requirement 10) ================= -->
-  <section id="blessings" class="py-24 bg-rose-50/50 border-t border-bride-gold/25 relative z-30">
+  <!-- ================= SECTION 8: GUEST BLESSINGS WALL ================= -->
+  <section id="blessings" class="py-24 bg-rose-50/50 border-t border-bride-gold/25 relative z-30 reveal">
     <div class="max-w-4xl mx-auto px-6">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Community Blessings</span>
@@ -1154,7 +1162,7 @@
       
     </div>
 
-    <!-- Top Arrow (Requirement 1: Last page arrow takes to top of page) -->
+    <!-- Top Arrow -->
     <div class="text-center mt-16">
       <a href="#top" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer relative z-20" title="Return to Top">
         <i class="fa-solid fa-chevron-up text-2xl"></i>
@@ -1237,6 +1245,10 @@
           <h4 id="cinemaModalTitle" class="font-cinzel text-lg sm:text-xl text-bride-goldlight font-bold">Film Title</h4>
           <p id="cinemaModalDesc" class="text-xs text-stone-400 mt-0.5">Film synopsis and ceremonial details.</p>
         </div>
+        
+        <button id="ownerToggleBtn" onclick="toggleOwnerMode()" class="self-start sm:self-auto px-4 py-1.5 rounded-full border border-bride-gold/40 text-bride-gold text-[10px] font-semibold tracking-wider uppercase hover:bg-bride-gold/10 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-key text-[10px]"></i> <span id="ownerBtnText">Creator Access</span>
+        </button>
       </div>
 
     </div>
@@ -1263,7 +1275,7 @@
 
   <!-- 3 Floating Quick Action Buttons -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-    <button id="installAppBtn" onclick="triggerPwaInstall()" class="w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Install App">
+    <button id="installAppBtn" onclick="triggerPwaInstall()" class="hidden w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Install App">
       <i class="fa-solid fa-download text-base"></i>
     </button>
     <button onclick="openShareModal()" class="w-12 h-12 rounded-full bg-white text-bride-cardinal border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Scan & Share">
@@ -1274,7 +1286,7 @@
     </button>
   </div>
 
-<!-- Beautified Luxury Script Footer (Matches Screenshot Exactly) -->
+  <!-- Beautified Luxury Script Footer -->
   <footer class="py-16 sm:py-20 bg-bride-midnight text-white text-center border-t border-bride-gold/30 relative z-30">
     <p class="font-script text-5xl sm:text-6xl md:text-7xl gold-foil mb-3 select-none drop-shadow-md">
       Barsha <span class="text-4xl sm:text-5xl md:text-6xl">&</span> Abhisek
@@ -1311,6 +1323,20 @@
     setInterval(runTimer, 1000);
     runTimer();
 
+    // Scroll Reveal Observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -50px 0px", threshold: 0.1 });
+      revealElements.forEach(el => revealObserver.observe(el));
+    });
+
     // Memory Capsule Rotation
     const memoriesList = [
       { quote: "Golden desert sunsets and city lights mirrored in your eyes, beginning our journey where dreams touch the sky.", location: "Honeymoon in Dubai" },
@@ -1337,17 +1363,13 @@
       }, 200);
     }
 
-    // Google Drive Vault Opener
-    function openVault(url) {
-      window.open(url, '_blank');
-    }
-
-    // Google Form Upload Popup
+    // Google Drive Vault Opener & Popups
+    function openVault(url) { window.open(url, '_blank'); }
     function openUploadPopup() {
       window.open('https://docs.google.com/forms/d/e/1FAIpQLScOdQSsFED5G_DI14JJ8H7ISpHM05YpXNU1_f-cxba_trA40w/viewform?usp=publish-editor', 'UploadPhotos', 'width=700,height=800');
     }
 
-    // Web Share API
+    // Web Share API & QR Modal
     function triggerShareAction() {
       if (navigator.share) {
         navigator.share({
@@ -1359,7 +1381,6 @@
         openShareModal();
       }
     }
-
     function openShareModal() {
       const currentUrl = window.location.href;
       document.getElementById('qrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(currentUrl)}`;
@@ -1376,11 +1397,33 @@
       closeShareModal();
     }
 
-    // Ambient Synthesizer (50% Volume Gain Ceiling)
-    let audioCtx = null;
-    let isPlaying = false;
-    let musicTimer = null;
+    // Modal History & Back Button Trap
+    let isModalOpen = false;
+    function pushModalState() {
+      if (!isModalOpen) {
+        history.pushState({ modal: true }, '');
+        isModalOpen = true;
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function removeModalState() {
+      if (isModalOpen) {
+        isModalOpen = false;
+        document.body.style.overflow = '';
+      }
+    }
+    window.addEventListener('popstate', () => {
+      if (isModalOpen) closeAllModals(false);
+    });
+    function closeAllModals(goBack = true) {
+      closePhotoModal(false);
+      closeCinemaModal(false);
+      removeModalState();
+      if (goBack) history.back();
+    }
 
+    // Ambient Synthesizer (50% Volume)
+    let audioCtx = null, isPlaying = false, musicTimer = null;
     function toggleAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       if (!isPlaying) {
@@ -1390,7 +1433,6 @@
         stopAudio();
       }
     }
-
     function startMusicPlayback() {
       if (musicTimer) clearInterval(musicTimer);
       isPlaying = true;
@@ -1412,18 +1454,16 @@
         idx++;
       }, 750);
     }
-
     function stopAudio() {
       if (musicTimer) clearInterval(musicTimer);
       isPlaying = false;
       document.getElementById('audioIcon').className = 'fa-solid fa-music text-base';
     }
-
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) stopAudio();
     });
 
-    // Gallery Filter Architecture
+    // Gallery Filter Architecture with Viewport Alignment
     function switchGalleryTab(category) {
       const targetBtn = document.getElementById('btn-' + category);
       if (targetBtn) {
@@ -1439,18 +1479,15 @@
     function filterGallery(category) {
       const items = document.querySelectorAll('#galleryGrid .gallery-item');
       const buttons = document.querySelectorAll('.gallery-btn');
-
       buttons.forEach(btn => {
         btn.classList.remove('bg-bride-cardinal', 'text-white', 'shadow-md');
         btn.classList.add('bg-white', 'text-stone-700');
       });
-
       const activeBtn = document.getElementById('btn-' + category);
       if (activeBtn) {
         activeBtn.classList.remove('bg-white', 'text-stone-700');
         activeBtn.classList.add('bg-bride-cardinal', 'text-white', 'shadow-md');
       }
-
       items.forEach(item => {
         const itemCat = item.getAttribute('data-cat');
         const itemType = item.getAttribute('data-type');
@@ -1462,7 +1499,7 @@
       });
     }
 
-    // Fullscreen Photo Lightbox Slider
+    // Photo Lightbox
     let currentPhotoArray = [];
     let currentPhotoIndex = 0;
 
@@ -1474,7 +1511,6 @@
         currentPhotoArray = allPhotos.filter(card => card.getAttribute('data-cat') === category);
         currentPhotoIndex = currentPhotoArray.indexOf(activeCard);
       }
-
       const prevBtn = document.getElementById('photoPrevBtn');
       const nextBtn = document.getElementById('photoNextBtn');
       if (currentPhotoArray.length <= 1) {
@@ -1484,17 +1520,18 @@
         if (prevBtn) prevBtn.style.display = 'flex';
         if (nextBtn) nextBtn.style.display = 'flex';
       }
-
       document.getElementById('modalImg').src = src;
       document.getElementById('modalTitle').textContent = title;
       document.getElementById('modalQuote').textContent = `"${quote}"`;
       document.getElementById('photoModal').classList.remove('hidden');
       document.getElementById('photoModal').classList.add('flex');
+      pushModalState();
     }
 
-    function closePhotoModal() {
+    function closePhotoModal(goBack = true) {
       document.getElementById('photoModal').classList.add('hidden');
       document.getElementById('photoModal').classList.remove('flex');
+      if (goBack) removeModalState();
     }
 
     function updatePhotoModal() {
@@ -1528,52 +1565,42 @@
       updatePhotoModal();
     }
 
-    // Cinema Hub & YouTube Modal
+    // Cinema Hub & YouTube Player with Owner Access
     let ytPlayer = null;
     let currentVideoArray = [];
     let currentVideoIndex = 0;
     let trackerTimer = null;
     let isUserSeeking = false;
     let uiHideTimer = null;
+    let isOwner = localStorage.getItem('barsha_owner') === 'true' || new URLSearchParams(window.location.search).get('admin') === 'true';
 
     function filterCinema(category) {
       const cards = document.querySelectorAll('#cinemaGrid > div');
       const buttons = document.querySelectorAll('.cinema-filter-btn');
-
       buttons.forEach(btn => {
         btn.classList.remove('bg-bride-cardinal', 'text-bride-goldlight');
         btn.classList.add('bg-black/40', 'text-stone-300');
       });
-      
       const activeBtn = document.getElementById('cinema-btn-' + category);
       if (activeBtn) {
         activeBtn.classList.remove('bg-black/40', 'text-stone-300');
         activeBtn.classList.add('bg-bride-cardinal', 'text-bride-goldlight');
       }
-
       cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-cat') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        if (category === 'all' || card.getAttribute('data-cat') === category) card.style.display = 'block';
+        else card.style.display = 'none';
       });
     }
 
     function launchCinema(title, desc, youtubeId) {
       stopAudio();
       const allVideos = Array.from(document.querySelectorAll('.glass-card-dark'));
-      const activeCard = allVideos.find(card => {
-        const onclick = card.getAttribute('onclick') || '';
-        return onclick.includes(youtubeId);
-      });
-      
+      const activeCard = allVideos.find(card => (card.getAttribute('onclick') || '').includes(youtubeId));
       if (activeCard) {
         const category = activeCard.getAttribute('data-cat');
         currentVideoArray = allVideos.filter(card => card.getAttribute('data-cat') === category && card.getAttribute('onclick'));
         currentVideoIndex = currentVideoArray.indexOf(activeCard);
       }
-
       const prevBtn = document.getElementById('vidPrevBtn');
       const nextBtn = document.getElementById('vidNextBtn');
       if (currentVideoArray.length <= 1) {
@@ -1586,20 +1613,36 @@
 
       document.getElementById('cinemaModalTitle').textContent = title;
       document.getElementById('cinemaModalDesc').textContent = desc;
-      
-      if (window.YT && window.YT.Player) {
-        initVisitorPlayer(youtubeId);
+
+      const visitorWrap = document.getElementById('visitorPlayerWrap');
+      const controlsBar = document.getElementById('customControlsBar');
+      const creatorFrame = document.getElementById('creatorFrame');
+
+      if (isOwner) {
+        visitorWrap.classList.add('hidden');
+        controlsBar.classList.add('hidden');
+        creatorFrame.classList.remove('hidden');
+        creatorFrame.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=1&rel=0`;
       } else {
-        const checkAPI = setInterval(() => {
-          if (window.YT && window.YT.Player) {
-            clearInterval(checkAPI);
-            initVisitorPlayer(youtubeId);
-          }
-        }, 100);
+        creatorFrame.classList.add('hidden');
+        creatorFrame.src = "";
+        visitorWrap.classList.remove('hidden');
+        controlsBar.classList.remove('hidden');
+        if (window.YT && window.YT.Player) initVisitorPlayer(youtubeId);
+        else {
+          const checkAPI = setInterval(() => {
+            if (window.YT && window.YT.Player) {
+              clearInterval(checkAPI);
+              initVisitorPlayer(youtubeId);
+            }
+          }, 100);
+        }
       }
 
+      updateOwnerUI();
       document.getElementById('cinemaModal').classList.remove('hidden');
       document.getElementById('cinemaModal').classList.add('flex');
+      pushModalState();
     }
 
     function initVisitorPlayer(vidId) {
@@ -1609,20 +1652,9 @@
         width: '100%',
         height: '100%',
         videoId: vidId,
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          rel: 0,
-          modestbranding: 1,
-          playsinline: 1,
-          fs: 0
-        },
+        playerVars: { autoplay: 1, controls: 0, rel: 0, modestbranding: 1, playsinline: 1, fs: 0 },
         events: {
-          onReady: (e) => {
-            e.target.playVideo();
-            startTracking();
-            scheduleControlBarHide();
-          },
+          onReady: (e) => { e.target.playVideo(); startTracking(); scheduleControlBarHide(); },
           onStateChange: (e) => {
             const icon = document.querySelector('#playPauseBtn i');
             if (e.data === YT.PlayerState.PLAYING) {
@@ -1646,30 +1678,21 @@
         }
       }, 3000);
     }
-
     function revealControlBar() {
       const bar = document.getElementById('customControlsBar');
       if (bar) bar.style.opacity = '1';
       scheduleControlBarHide();
     }
-
     function handleStageClick() {
       const bar = document.getElementById('customControlsBar');
-      if (bar && bar.style.opacity === '0') {
-        revealControlBar();
-      } else {
-        togglePlayState();
-      }
+      if (bar && bar.style.opacity === '0') revealControlBar();
+      else togglePlayState();
     }
-
     function formatTime(sec) {
       if (!sec || isNaN(sec)) return "0:00";
       sec = Math.floor(sec);
-      const m = Math.floor(sec / 60);
-      const s = sec % 60;
-      return `${m}:${s < 10 ? '0' : ''}${s}`;
+      return `${Math.floor(sec / 60)}:${(sec % 60) < 10 ? '0' : ''}${sec % 60}`;
     }
-
     function startTracking() {
       clearInterval(trackerTimer);
       trackerTimer = setInterval(() => {
@@ -1677,20 +1700,15 @@
           const cur = ytPlayer.getCurrentTime() || 0;
           const dur = ytPlayer.getDuration() || 0;
           document.getElementById('timeDisplay').textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
-          if (dur > 0) {
-            document.getElementById('videoScrubber').value = (cur / dur) * 100;
-          }
+          if (dur > 0) document.getElementById('videoScrubber').value = (cur / dur) * 100;
         }
       }, 350);
     }
-
     function togglePlayState() {
       if (!ytPlayer) return;
-      const state = ytPlayer.getPlayerState();
-      if (state === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
+      if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
       else ytPlayer.playVideo();
     }
-
     function onScrub(percent) {
       if (!ytPlayer || !ytPlayer.getDuration) return;
       isUserSeeking = true;
@@ -1701,7 +1719,6 @@
       setTimeout(() => { isUserSeeking = false; }, 300);
       revealControlBar();
     }
-
     function toggleMute() {
       if (!ytPlayer) return;
       const icon = document.querySelector('#muteBtn i');
@@ -1714,7 +1731,6 @@
       }
       revealControlBar();
     }
-
     async function toggleImmersiveFullscreen() {
       const modal = document.getElementById('cinemaModal');
       const fsIcon = document.getElementById('fsIcon');
@@ -1728,16 +1744,18 @@
         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
       }
     }
-
-    function closeCinemaModal() {
+    function closeCinemaModal(goBack = true) {
       if (ytPlayer && ytPlayer.destroy) {
         try { ytPlayer.destroy(); } catch(e){}
         ytPlayer = null;
       }
+      const cf = document.getElementById('creatorFrame');
+      if (cf) cf.src = "";
       document.getElementById('cinemaModal').classList.add('hidden');
       document.getElementById('cinemaModal').classList.remove('flex');
       clearInterval(trackerTimer);
       clearTimeout(uiHideTimer);
+      if (goBack) removeModalState();
     }
 
     function prevVideo(e) {
@@ -1746,37 +1764,92 @@
       currentVideoIndex = (currentVideoIndex - 1 + currentVideoArray.length) % currentVideoArray.length;
       playNewVideoIndex();
     }
-
     function nextVideo(e) {
       if (e) e.stopPropagation();
       if (currentVideoArray.length <= 1) return;
       currentVideoIndex = (currentVideoIndex + 1) % currentVideoArray.length;
       playNewVideoIndex();
     }
-
     function playNewVideoIndex() {
       const card = currentVideoArray[currentVideoIndex];
-      const onclickStr = card.getAttribute('onclick');
-      const regex = /launchCinema\('([^']+)'\s*,\s*'([^']+)'\s*,\s*'([^']+)'\)/;
-      const match = onclickStr.match(regex);
+      const match = (card.getAttribute('onclick') || '').match(/launchCinema\('([^']+)'\s*,\s*'([^']+)'\s*,\s*'([^']+)'\)/);
       if (match) {
         document.getElementById('cinemaModalTitle').textContent = match[1];
         document.getElementById('cinemaModalDesc').textContent = match[2];
-        if (ytPlayer && ytPlayer.loadVideoById) {
-          ytPlayer.loadVideoById(match[3]);
+        if (isOwner) {
+          document.getElementById('creatorFrame').src = `https://www.youtube.com/embed/${match[3]}?autoplay=1&controls=1&rel=0`;
         } else {
-          initVisitorPlayer(match[3]);
+          if (ytPlayer && ytPlayer.loadVideoById) ytPlayer.loadVideoById(match[3]);
+          else initVisitorPlayer(match[3]);
         }
       }
     }
 
-    // Google Sheets Wishes Webhook (Requirement 10)
-    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxp3Lbxn4KJRPcAmgD8T4JiX0bJHev87geBFeE5iuUWjvRSd_qYosFfPed0yD0138P64g/exec";
+    function updateOwnerUI() {
+      const btnText = document.getElementById('ownerBtnText');
+      const btn = document.getElementById('ownerToggleBtn');
+      if (btn && btnText) {
+        if (isOwner) {
+          btnText.textContent = "Creator Mode (Active)";
+          btn.classList.add('bg-bride-gold/20', 'border-bride-gold');
+        } else {
+          btnText.textContent = "Creator Access";
+          btn.classList.remove('bg-bride-gold/20', 'border-bride-gold');
+        }
+      }
+    }
+    function toggleOwnerMode() {
+      if (!isOwner) {
+        const pass = prompt("Enter Creator PIN to unlock native player controls:", "");
+        if (pass === "1234") {
+          isOwner = true;
+          localStorage.setItem('barsha_owner', 'true');
+          updateOwnerUI();
+          alert("Creator Access Unlocked!");
+        } else if (pass !== null) {
+          alert("Incorrect PIN.");
+        }
+      } else {
+        isOwner = false;
+        localStorage.setItem('barsha_owner', 'false');
+        updateOwnerUI();
+        alert("Switched back to Visitor Mode.");
+      }
+    }
 
+    // Touch Swipes & Keyboard Navigation
+    let touchstartX = 0, touchendX = 0;
+    function handleSwipe() {
+      if (!isModalOpen) return;
+      if (touchendX < touchstartX - 50) {
+        if (!document.getElementById('photoModal').classList.contains('hidden')) nextPhoto();
+        else if (!document.getElementById('cinemaModal').classList.contains('hidden')) nextVideo();
+      }
+      if (touchendX > touchstartX + 50) {
+        if (!document.getElementById('photoModal').classList.contains('hidden')) prevPhoto();
+        else if (!document.getElementById('cinemaModal').classList.contains('hidden')) prevVideo();
+      }
+    }
+    document.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
+    document.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); });
+    document.addEventListener('keydown', e => {
+      if (!isModalOpen) return;
+      if (e.key === 'Escape') closeAllModals(true);
+      if (e.key === 'ArrowRight') {
+        if (!document.getElementById('photoModal').classList.contains('hidden')) nextPhoto();
+        else if (!document.getElementById('cinemaModal').classList.contains('hidden')) nextVideo();
+      }
+      if (e.key === 'ArrowLeft') {
+        if (!document.getElementById('photoModal').classList.contains('hidden')) prevPhoto();
+        else if (!document.getElementById('cinemaModal').classList.contains('hidden')) prevVideo();
+      }
+    });
+
+    // Google Sheets Wishes Webhook
+    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxp3Lbxn4KJRPcAmgD8T4JiX0bJHev87geBFeE5iuUWjvRSd_qYosFfPed0yD0138P64g/exec";
     function escapeHtml(string) {
       return String(string).replace(/[&<>"'`=\/]/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '/': '&#x2F;', '`': '&#x60;', '=': '&#x3D;' })[s]);
     }
-
     function renderBlessingCard(name, message, dateStr) {
       const stream = document.getElementById('blessingsStreamScroll');
       const card = document.createElement('div');
@@ -1790,7 +1863,6 @@
       `;
       stream.prepend(card);
     }
-
     function fetchSavedBlessings() {
       fetch(GOOGLE_SHEET_WEBAPP_URL)
         .then(res => res.json())
@@ -1800,83 +1872,81 @@
           }
         }).catch(() => {});
     }
-
     function postBlessing(e) {
       e.preventDefault();
       const name = document.getElementById('bName').value.trim();
       const msg = document.getElementById('bMsg').value.trim();
       if (!name || !msg) return;
-
       const submitBtn = document.getElementById('submitBlessingBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>Preserving Blessing...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
-
-      const today = new Date();
-      const dateFormatted = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-
+      const dateFormatted = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
       renderBlessingCard(name, msg, dateFormatted);
-
       fetch(GOOGLE_SHEET_WEBAPP_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name, message: msg, date: dateFormatted })
-      }).then(() => {
-        document.getElementById('blessingForm').reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>Bestow Blessing</span> <i class="fa-solid fa-feather"></i>`;
-      }).catch(() => {
+      }).finally(() => {
         document.getElementById('blessingForm').reset();
         submitBtn.disabled = false;
         submitBtn.innerHTML = `<span>Bestow Blessing</span> <i class="fa-solid fa-feather"></i>`;
       });
     }
-
     fetchSavedBlessings();
 
-    // PWA Prompt
+    // PWA & iOS Safari Install Prompt
     let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const installBtn = document.getElementById('installAppBtn');
-      if (installBtn) installBtn.style.display = 'flex';
-    });
+    const installAppBtn = document.getElementById('installAppBtn');
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-    function triggerPwaInstall() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt = null;
-      } else {
-        alert("To install this app on your device:\n• iPhone: Tap Share in Safari, then 'Add to Home Screen'.\n• Android: Tap 3 dots in Chrome, then 'Install app' or 'Add to Home screen'.");
+    if (isIOS && !isStandalone) {
+      if (installAppBtn) {
+        installAppBtn.classList.remove('hidden');
+        installAppBtn.addEventListener('click', () => {
+          alert("To install this app on your iPhone:\n\n1. Tap the Share button at the bottom of Safari.\n2. Scroll down and tap 'Add to Home Screen'.");
+        });
       }
     }
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installAppBtn) {
+        installAppBtn.classList.remove('hidden');
+        installAppBtn.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') installAppBtn.classList.add('hidden');
+            deferredPrompt = null;
+          }
+        });
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      if (installAppBtn) installAppBtn.classList.add('hidden');
+      deferredPrompt = null;
+    });
 
     // Falling Petals Canvas
     const canvas = document.getElementById('petalCanvas');
     const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
+    let width = canvas.width = window.innerWidth, height = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
     const petals = Array.from({ length: 22 }).map(() => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
+      x: Math.random() * width, y: Math.random() * height,
       size: Math.random() * 6 + 4,
-      speedX: Math.random() * 1 - 0.5,
-      speedY: Math.random() * 1.5 + 0.8,
+      speedX: Math.random() * 1 - 0.5, speedY: Math.random() * 1.5 + 0.8,
       rotation: Math.random() * 360
     }));
-
     function animatePetals() {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = 'rgba(226, 85, 117, 0.4)';
       petals.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
+        p.x += p.speedX; p.y += p.speedY;
         if (p.y > height) { p.y = -10; p.x = Math.random() * width; }
         ctx.beginPath();
         ctx.ellipse(p.x, p.y, p.size, p.size / 2, p.rotation, 0, Math.PI * 2);
