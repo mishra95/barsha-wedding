@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" style="scroll-padding-top: 85px;">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barsha & Abhisek — Our Forever Chapter</title>
   
+  <!-- SEO & Social Open Graph Tags -->
+  <meta name="description" content="Explore ceremonies, photo albums, and cinematic highlights of Barsha & Abhisek's wedding celebration.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Barsha & Abhisek — Our Forever Chapter">
+  <meta property="og:description" content="Bound by Vedic Vows, Written in the Stars. Relive our wedding celebration and sacred memories.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&h=630&q=85">
+  <meta property="og:type" content="website">
+
   <!-- App / PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#841B37">
@@ -18,10 +26,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <!-- FontAwesome -->
+  <!-- FontAwesome & YouTube IFrame API -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- Tailwind CSS CDN -->
@@ -78,6 +84,11 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .hero-title-responsive {
+      font-size: clamp(1.85rem, 6vw, 4.5rem);
+      line-height: 1.15;
+    }
+
     .nav-glow-link {
       transition: all 0.3s ease-in-out;
       text-shadow: 0 0 0px rgba(212, 175, 55, 0);
@@ -89,7 +100,7 @@
     }
 
     .glass-card-light {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(212, 175, 55, 0.35);
       box-shadow: 0 16px 36px -10px rgba(132, 27, 55, 0.08);
@@ -102,7 +113,7 @@
     }
 
     .glass-card-dark {
-      background: rgba(40, 8, 16, 0.82);
+      background: rgba(40, 8, 16, 0.85);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(212, 175, 55, 0.3);
       box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
@@ -117,7 +128,7 @@
     .hero-cinematic-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85');
+      background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
       background-position: center 35%;
       filter: saturate(1.15) brightness(0.42);
@@ -132,16 +143,16 @@
     .baraat-cinematic-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85');
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
       background-position: center;
-      filter: saturate(1.2) brightness(0.45);
+      filter: saturate(1.2) brightness(0.38);
     }
     .baraat-vignette-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(35, 6, 14, 0.55) 0%, rgba(18, 2, 6, 0.88) 75%, rgba(10, 1, 3, 0.98) 100%),
-                  linear-gradient(to bottom, #FFF5F7 0%, transparent 15%, transparent 85%, #FCF7F2 100%);
+      background: radial-gradient(circle at center, rgba(35, 6, 14, 0.55) 0%, rgba(18, 2, 6, 0.9) 75%, rgba(10, 1, 3, 0.98) 100%),
+                  linear-gradient(to bottom, #FFF5F7 0%, transparent 18%, transparent 82%, #FCF7F2 100%);
     }
 
     #petalCanvas {
@@ -200,18 +211,24 @@
   <!-- Ambient Falling Rose Petals -->
   <canvas id="petalCanvas"></canvas>
 
+  <!-- Notification Toast -->
+  <div id="toastNotification" class="fixed top-20 right-6 z-50 transform translate-x-full opacity-0 transition-all duration-300 pointer-events-none bg-bride-cardinal text-bride-goldlight px-5 py-3 rounded-2xl border border-bride-gold/50 shadow-2xl text-xs font-semibold flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-bride-gold text-sm"></i>
+    <span id="toastMessage">Notification message</span>
+  </div>
+
   <!-- Sticky Luxury Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-bride-midnight/85 backdrop-blur-xl border-b border-bride-gold/30 px-6 py-3.5 transition-all">
+  <nav class="fixed top-0 left-0 w-full z-40 bg-bride-midnight/90 backdrop-blur-xl border-b border-bride-gold/30 px-4 sm:px-6 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Monogram Crest -->
       <a href="#top" class="flex items-center group cursor-pointer" title="Barsha & Abhisek">
-        <div class="w-11 h-11 rounded-full border-2 border-bride-gold/60 flex items-center justify-center bg-gradient-to-br from-bride-cardinal to-bride-velvet text-bride-goldlight font-cinzel text-xs font-bold shadow-lg group-hover:scale-105 group-hover:border-bride-gold transition-all duration-300">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-bride-gold/60 flex items-center justify-center bg-gradient-to-br from-bride-cardinal to-bride-velvet text-bride-goldlight font-cinzel text-xs font-bold shadow-lg group-hover:scale-105 group-hover:border-bride-gold transition-all duration-300">
           B&A
         </div>
       </a>
 
-      <!-- Glowing Navigation Links -->
+      <!-- Desktop Links -->
       <div class="hidden lg:flex items-center gap-6 text-[11px] uppercase tracking-[0.22em] font-semibold text-bride-goldlight/90">
         <a href="#chronicles" class="nav-glow-link">Ceremonies</a>
         <a href="#journey" class="nav-glow-link">Baraat Route</a>
@@ -222,18 +239,34 @@
         <a href="#blessings" class="nav-glow-link">Wishes</a>
       </div>
 
-      <!-- Pill Share Button -->
-      <div class="flex items-center">
-        <button onclick="triggerShareAction()" class="px-5 py-2 rounded-full bg-bride-cardinal border border-bride-gold/50 text-bride-goldlight text-xs font-bold tracking-widest uppercase hover:bg-bride-rose transition shadow-md flex items-center gap-2">
+      <!-- Actions & Mobile Hamburger Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="triggerShareAction()" aria-label="Share this celebration" class="px-4 sm:px-5 py-2 rounded-full bg-bride-cardinal border border-bride-gold/50 text-bride-goldlight text-xs font-bold tracking-widest uppercase hover:bg-bride-rose transition shadow-md flex items-center gap-2">
           <i class="fa-solid fa-share-nodes text-xs"></i>
-          <span>Share</span>
+          <span class="hidden sm:inline">Share</span>
+        </button>
+
+        <!-- Hamburger Button -->
+        <button id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Toggle mobile navigation menu" class="lg:hidden w-10 h-10 rounded-full border border-bride-gold/40 bg-white/5 flex items-center justify-center text-bride-goldlight text-base hover:bg-white/10 transition">
+          <i id="menuIcon" class="fa-solid fa-bars"></i>
         </button>
       </div>
 
     </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNavMenu" class="hidden lg:hidden flex-col gap-3 pt-4 pb-2 border-t border-bride-gold/20 mt-3 text-center text-xs uppercase tracking-widest text-bride-goldlight/90">
+      <a href="#chronicles" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Ceremonies</a>
+      <a href="#journey" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Baraat Route</a>
+      <a href="#culture" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Traditions</a>
+      <a href="#gallery" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Albums</a>
+      <a href="#cinema" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Cinema Hub</a>
+      <a href="#anniversary" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Our Story</a>
+      <a href="#blessings" onclick="toggleMobileNav()" class="py-2 hover:text-white transition">Wishes & Prayers</a>
+    </div>
   </nav>
 
-  <!-- ================= SECTION 1: HERO ================= -->
+  <!-- ================= SECTION 1: HERO (DARK) ================= -->
   <header class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-20 px-4 sm:px-6 text-center overflow-hidden reveal active">
     <div class="hero-cinematic-bg"></div>
     <div class="hero-vignette-overlay"></div>
@@ -253,8 +286,8 @@
         </span>
       </div>
 
-      <!-- Single-Line Title -->
-      <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-normal sm:tracking-wide uppercase gold-foil drop-shadow-2xl whitespace-nowrap overflow-hidden text-ellipsis py-2">
+      <!-- Clamped Title (No overflow on small 360px phones) -->
+      <h1 class="font-cinzel hero-title-responsive font-black tracking-normal sm:tracking-wide uppercase gold-foil drop-shadow-2xl py-2">
         BARSHA & ABHISEK
       </h1>
 
@@ -311,111 +344,131 @@
 
     <!-- Arrow to Chronicles -->
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
-      <a href="#chronicles" class="text-bride-goldlight/80 hover:text-white transition animate-float block cursor-pointer">
+      <a href="#chronicles" aria-label="Scroll to Ceremonies" class="text-bride-goldlight/80 hover:text-white transition animate-float block cursor-pointer">
         <i class="fa-solid fa-chevron-down text-2xl"></i>
       </a>
     </div>
   </header>
 
-  <!-- ================= SECTION 2: SACRED CHRONICLES ================= -->
-  <section id="chronicles" class="py-24 px-6 max-w-7xl mx-auto relative z-30 reveal">
-    <div class="text-center mb-16">
-      <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Timetable</span>
-      <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-bride-cardinal">The Sacred Chronicles</h2>
-      <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-      
-      <!-- Nirbandha -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
-        <div>
-          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">SACRED RITUAL 🪔</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">Nirbandha Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">The holy engagement sealed with sacred betel nut offerings, forging eternal bonds under divine Jagannath blessings.</p>
-        </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
-          <span>10:00 AM • Bishnu Mandir</span>
-          <a href="https://maps.app.goo.gl/7dJh3Nii4xzLmGke" target="_blank" class="text-bride-cardinal hover:text-bride-rose underline">Directions ↗</a>
-        </div>
+  <!-- ================= SECTION 2: SACRED CHRONICLES (LIGHT) ================= -->
+  <section id="chronicles" class="py-24 px-6 bg-bride-blush relative z-30 reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Timetable</span>
+        <h2 class="font-cinzel text-4xl sm:text-5xl font-bold text-bride-cardinal">The Sacred Chronicles</h2>
+        <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <!-- Ring Ceremony -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
-        <div>
-          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">RING EXCHANGE 💍</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">Ring Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">An afternoon of sparkling promises, family laughter, and lifelong devotion held at Hotel 7 Saat, Patia.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        
+        <!-- Nirbandha -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">SACRED RITUAL 🪔</span>
+              <span class="text-xs font-semibold text-bride-velvet">Sun, 12 May 2024</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">Nirbandha Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">The holy engagement sealed with sacred betel nut offerings, forging eternal bonds under divine Jagannath blessings.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 10:00 AM • Bishnu Mandir</span>
+            <a href="https://maps.app.goo.gl/7dJh3Nii4xzLmGke" target="_blank" rel="noopener noreferrer" class="text-bride-cardinal hover:text-bride-rose underline font-bold">Directions ↗</a>
+          </div>
         </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
-          <span>12:00 PM • Hotel 7 Saat</span>
-          <a href="https://maps.app.goo.gl/v5cCfbC4zzZAS9Yw9" target="_blank" class="text-bride-cardinal hover:text-bride-rose underline">Directions ↗</a>
+
+        <!-- Ring Ceremony -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">RING EXCHANGE 💍</span>
+              <span class="text-xs font-semibold text-bride-velvet">Wed, 18 Dec 2024</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">Ring Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">An afternoon of sparkling promises, family laughter, and lifelong devotion held at Hotel 7 Saat, Patia.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 12:00 PM • Hotel 7 Saat</span>
+            <a href="https://maps.app.goo.gl/v5cCfbC4zzZAS9Yw9" target="_blank" rel="noopener noreferrer" class="text-bride-cardinal hover:text-bride-rose underline font-bold">Directions ↗</a>
+          </div>
         </div>
+
+        <!-- Haldi & Mehendi -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">VIBRANT COLORS 🌼🌸</span>
+              <span class="text-xs font-semibold text-bride-velvet">Mon, 20 Jan 2025</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">Haldi & Mehendi Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">Golden turmeric blessings and intricate bridal henna patterns adorning the bride’s hands surrounded by songs and sisterly joy.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 10:00 AM • Home - Bidanasi</span>
+            <a href="https://maps.app.goo.gl/i7zvu6CJtT21Z94K8" target="_blank" rel="noopener noreferrer" class="text-bride-cardinal hover:text-bride-rose underline font-bold">Directions ↗</a>
+          </div>
+        </div>
+
+        <!-- Marriage -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between border-2 border-bride-gold shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-bride-rose text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">THE SACRED DAY 🌸</span>
+              <span class="text-xs font-bold text-bride-cardinal">Wed, 22 Jan 2025</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">Marriage Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">The holy Vedic vows, Hastaganti, and seven sacred pheras beside the whispering ocean tides of Gopalpur.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs font-bold text-bride-cardinal">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 02:00 PM • OTDC Panthanivas</span>
+            <a href="https://maps.app.goo.gl/2p3RTx4nYEY6g7pz6" target="_blank" rel="noopener noreferrer" class="hover:text-bride-rose underline font-bold">Directions ↗</a>
+          </div>
+        </div>
+
+        <!-- Reception -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">CELEBRATION ✨</span>
+              <span class="text-xs font-semibold text-bride-velvet">Wed, 29 Jan 2025</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">Reception Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">A grand evening of banquet, greetings, and heartfelt laughter with extended family and well-wishers.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 7:00 PM • JBS Garden, Tulsipur</span>
+            <span class="text-stone-400">Katak</span>
+          </div>
+        </div>
+
+        <!-- 1st Anniversary -->
+        <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-purple-900 text-purple-100 font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">MILESTONE REUNION 🥂</span>
+              <span class="text-xs font-semibold text-bride-velvet">Sun, 1 Mar 2026</span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-bride-cardinal mb-2">1st Anniversary Ceremony</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">Commemorating 365+ days of companionship, shared laughter, and an eternity yet to write together.</p>
+          </div>
+          <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
+            <span><i class="fa-regular fa-clock text-bride-gold mr-1"></i> 12:00 PM • Hotel 7 Saat</span>
+            <span class="text-stone-400">Bhubaneswar</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Haldi & Mehendi -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
-        <div>
-          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">VIBRANT COLORS 🌼🌸</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">Haldi & Mehendi Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">Golden turmeric blessings and intricate bridal henna patterns adorning the bride’s hands surrounded by songs and sisterly joy.</p>
-        </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
-          <span>10:00 AM • Home - Bidanasi</span>
-          <a href="https://maps.app.goo.gl/i7zvu6CJtT21Z94K8" target="_blank" class="text-bride-cardinal hover:text-bride-rose underline">Directions ↗</a>
-        </div>
+      <!-- Arrow to Baraat Journey -->
+      <div class="text-center mt-16">
+        <a href="#journey" aria-label="Scroll to Baraat Journey" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
+          <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
       </div>
-
-      <!-- Marriage -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between border-2 border-bride-gold shadow-xl">
-        <div>
-          <span class="bg-bride-rose text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">THE SACRED DAY 🌸</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">Marriage Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">The holy Vedic vows, Hastaganthi, and seven sacred pheras beside the whispering ocean tides of Gopalpur.</p>
-        </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs font-bold text-bride-cardinal">
-          <span>02:00 PM • OTDC Panthanivas</span>
-          <a href="https://maps.app.goo.gl/2p3RTx4nYEY6g7pz6" target="_blank" class="hover:text-bride-rose underline">Directions ↗</a>
-        </div>
-      </div>
-
-      <!-- Reception -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
-        <div>
-          <span class="bg-bride-cardinal text-white font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">CELEBRATION ✨</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">Reception Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">A grand evening of banquet, greetings, and heartfelt laughter with extended family and well-wishers.</p>
-        </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
-          <span>7:00 PM • JBS Garden, Tulsipur</span>
-          <span class="text-stone-400">Katak</span>
-        </div>
-      </div>
-
-      <!-- 1st Anniversary -->
-      <div class="glass-card-light p-8 rounded-3xl flex flex-col justify-between">
-        <div>
-          <span class="bg-purple-900 text-purple-100 font-bold tracking-widest text-[10px] px-3.5 py-1 rounded-full shadow-sm">MILESTONE REUNION 🥂</span>
-          <h3 class="font-serif text-3xl font-bold text-bride-cardinal mt-4 mb-2">1st Anniversary Ceremony</h3>
-          <p class="text-stone-600 text-sm leading-relaxed">Commemorating 365+ days of companionship, shared laughter, and an eternity yet to write together.</p>
-        </div>
-        <div class="border-t border-bride-gold/25 pt-4 mt-6 flex items-center justify-between text-xs text-stone-500 font-semibold">
-          <span>12:00 PM • Hotel 7 Saat</span>
-          <span class="text-stone-400">Bhubaneswar</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Arrow to Baraat Journey -->
-    <div class="text-center mt-16">
-      <a href="#journey" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
-        <i class="fa-solid fa-chevron-down text-2xl"></i>
-      </a>
     </div>
   </section>
 
-  <!-- ================= SECTION 3: BARAAT ROAD JOURNEY ================= -->
+  <!-- ================= SECTION 3: BARAAT ROAD JOURNEY (DARK) ================= -->
   <section id="journey" class="py-28 relative z-30 overflow-hidden text-white border-y border-bride-gold/30 reveal">
     <div class="baraat-cinematic-bg"></div>
     <div class="baraat-vignette-overlay"></div>
@@ -431,32 +484,32 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-        <div class="glass-card-light p-8 rounded-3xl text-center text-bride-midnight transform hover:-translate-y-2 transition-transform duration-300">
+        <div class="glass-card-dark p-8 rounded-3xl text-center text-white transform hover:-translate-y-2 transition-transform duration-300">
           <div class="w-16 h-16 rounded-full bg-bride-cardinal text-bride-goldlight mx-auto flex items-center justify-center text-2xl font-bold mb-4 shadow-xl border border-bride-gold/40">1</div>
-          <h4 class="font-cinzel text-lg font-bold text-bride-cardinal mb-1 uppercase tracking-wider">Departure Point</h4>
-          <p class="text-xs font-bold text-bride-cardinal mb-3">Mishra Bhawan</p>
-          <p class="text-sm text-stone-600 mb-6 leading-relaxed">Tarini Vihar, Bidanasi, Katak</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Tarini+Vihar%2C+Bidanasi%2C+Katak" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-cardinal/10 hover:bg-bride-cardinal hover:text-white text-bride-cardinal text-xs font-bold transition">
+          <h4 class="font-cinzel text-lg font-bold text-bride-goldlight mb-1 uppercase tracking-wider">Departure Point</h4>
+          <p class="text-xs font-bold text-bride-rose mb-3">07:05 AM Procession</p>
+          <p class="text-sm text-stone-300 mb-6 leading-relaxed">Mishra Bhawan, Bidanasi, Katak</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Tarini+Vihar%2C+Bidanasi%2C+Katak" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-cardinal/40 hover:bg-bride-cardinal hover:text-white text-bride-goldlight text-xs font-bold border border-bride-gold/30 transition">
             <i class="fa-solid fa-location-arrow"></i> Google Maps
           </a>
         </div>
 
-        <div class="glass-card-light p-8 rounded-3xl text-center text-bride-midnight transform hover:-translate-y-2 transition-transform duration-300">
+        <div class="glass-card-dark p-8 rounded-3xl text-center text-white transform hover:-translate-y-2 transition-transform duration-300">
           <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight mx-auto flex items-center justify-center text-2xl font-bold mb-4 shadow-xl border border-bride-gold/40">2</div>
-          <h4 class="font-cinzel text-lg font-bold text-bride-cardinal mb-1 uppercase tracking-wider">Highway Halt</h4>
-          <p class="text-xs font-bold text-bride-golddark mb-3">Rest & Procession Prep</p>
-          <p class="text-sm text-stone-600 mb-6 leading-relaxed">Hotel Aditya Inn, Buxipalli, Gopalpur</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Aditya+Inn%2C+Buxipalli%2C+Gopalpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-gold/15 hover:bg-bride-gold hover:text-bride-midnight text-bride-golddark text-xs font-bold transition">
+          <h4 class="font-cinzel text-lg font-bold text-bride-goldlight mb-1 uppercase tracking-wider">Highway Halt</h4>
+          <p class="text-xs font-bold text-bride-gold mb-3">Rest & Procession Prep</p>
+          <p class="text-sm text-stone-300 mb-6 leading-relaxed">Hotel Aditya Inn, Buxipalli, Gopalpur</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Aditya+Inn%2C+Buxipalli%2C+Gopalpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-gold/20 hover:bg-bride-gold hover:text-bride-midnight text-bride-goldlight text-xs font-bold border border-bride-gold/30 transition">
             <i class="fa-solid fa-location-arrow"></i> Google Maps
           </a>
         </div>
 
-        <div class="glass-card-light p-8 rounded-3xl text-center text-bride-midnight transform hover:-translate-y-2 transition-transform duration-300">
+        <div class="glass-card-dark p-8 rounded-3xl text-center text-white transform hover:-translate-y-2 transition-transform duration-300">
           <div class="w-16 h-16 rounded-full bg-bride-velvet text-bride-goldlight mx-auto flex items-center justify-center text-2xl font-bold mb-4 shadow-xl border border-bride-gold/40">3</div>
-          <h4 class="font-cinzel text-lg font-bold text-bride-cardinal mb-1 uppercase tracking-wider">Marriage Mandap</h4>
+          <h4 class="font-cinzel text-lg font-bold text-bride-goldlight mb-1 uppercase tracking-wider">Marriage Mandap</h4>
           <p class="text-xs font-bold text-bride-rose mb-3">Sacred Pheras by the Sea</p>
-          <p class="text-sm text-stone-600 mb-6 leading-relaxed">OTDC Panthanivas, Gopalpur</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=OTDC+Panthanivas%2C+Gopalpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-cardinal/10 hover:bg-bride-cardinal hover:text-white text-bride-cardinal text-xs font-bold transition">
+          <p class="text-sm text-stone-300 mb-6 leading-relaxed">OTDC Panthanivas, Gopalpur</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=OTDC+Panthanivas%2C+Gopalpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-bride-cardinal/40 hover:bg-bride-cardinal hover:text-white text-bride-goldlight text-xs font-bold border border-bride-gold/30 transition">
             <i class="fa-solid fa-location-arrow"></i> Google Maps
           </a>
         </div>
@@ -464,355 +517,105 @@
 
       <!-- Arrow to Traditions -->
       <div class="text-center mt-16">
-        <a href="#culture" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
+        <a href="#culture" aria-label="Scroll to Traditions" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
           <i class="fa-solid fa-chevron-down text-2xl"></i>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ================= SECTION 4: ODIA TRADITIONS ================= -->
-  <section id="culture" class="py-24 px-6 max-w-7xl mx-auto relative z-30 bg-bride-cream/60 reveal">
-    <div class="text-center mb-16">
-      <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Customs</span>
-      <h2 class="font-cinzel text-3xl sm:text-5xl text-bride-cardinal font-bold">Odia Bridal Traditions</h2>
-      <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Nirbandha</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">The formal commitment ceremony where the families exchange auspicious betel nuts (Gua) and coconuts, officially formalizing the alliance.</p>
+  <!-- ================= SECTION 4: ODIA TRADITIONS (LIGHT) ================= -->
+  <section id="culture" class="py-24 px-6 bg-bride-cream relative z-30 reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Sacred Customs</span>
+        <h2 class="font-cinzel text-3xl sm:text-5xl text-bride-cardinal font-bold">Odia Bridal Traditions</h2>
+        <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
       </div>
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Mangan</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">The sacred pre-wedding ceremony where seven married women apply turmeric paste and oil, blessing the bride with a radiant glow.</p>
-      </div>
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Diya Mangula Alati</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">A spiritual temple ritual where the bride's attire and bangles are blessed by the deity to ensure a smooth, protected ceremony.</p>
-      </div>
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Kanya Daan</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">The emotional Vedic ritual where the bride's parents formally hand over their daughter's hand to the groom, symbolizing her transition.</p>
-      </div>
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Hastaganti</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">The holy knotting ceremony where the couple's hands are bound with a sacred thread, betel leaves, and mango twigs over the fire.</p>
-      </div>
-      <div class="glass-card-light p-7 rounded-2xl">
-        <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Kaunri Khela</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">A lighthearted post-wedding game where the couple tries to open each other's closed fists to find hidden sea shells or coins.</p>
-      </div>
-    </div>
 
-    <!-- Arrow to Albums -->
-    <div class="text-center mt-16">
-      <a href="#gallery" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
-        <i class="fa-solid fa-chevron-down text-2xl"></i>
-      </a>
-    </div>
-  </section>
-
-  <!-- ================= SECTION 5: ALBUMS & PHOTO GALLERY ================= -->
-  <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-30 reveal">
-    <div class="text-center mb-10">
-      <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Treasured Memories</span>
-      <h2 class="font-cinzel text-4xl sm:text-5xl text-bride-cardinal font-bold">Captured Moments</h2>
-      <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <!-- Upload Photos Button -->
-    <div class="text-center mb-10">
-      <button onclick="openUploadPopup()" class="px-8 py-3 rounded-full bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-rose transition shadow-xl inline-flex items-center gap-2">
-        <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Contribute Your Photos
-      </button>
-    </div>
-
-    <!-- Category Filter Tabs with Smooth Offset Alignment -->
-    <div id="galleryFilters" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 relative z-20">
-      <button id="btn-all" onclick="filterGallery('all')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-bride-cardinal text-white shadow-md border border-bride-gold/40">All Moments</button>
-      <button id="btn-engagement" onclick="filterGallery('engagement')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Engagement</button>
-      <button id="btn-ring" onclick="filterGallery('ring')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Ring Ceremony</button>
-      <button id="btn-bardhara" onclick="filterGallery('bardhara')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Bardhara</button>
-      <button id="btn-haldi" onclick="filterGallery('haldi')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Haldi</button>
-      <button id="btn-mehendi" onclick="filterGallery('mehendi')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Mehendi</button>
-      <button id="btn-marriage" onclick="filterGallery('marriage')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Marriage</button>
-      <button id="btn-pala" onclick="filterGallery('pala')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Pala</button>
-      <button id="btn-reception" onclick="filterGallery('reception')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">Reception</button>
-      <button id="btn-anniversary" onclick="filterGallery('anniversary')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white text-stone-700 border border-bride-gold/40">1st Anniversary</button>
-    </div>
-
-    <!-- Gallery Grid with Album Covers & Photos -->
-    <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-
-      <!-- Engagement -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="engagement" data-type="album" onclick="switchGalleryTab('engagement')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-bride-cardinal text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Engagement 🌿</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Nirbandha</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">The formal commitment ceremony where the families exchange auspicious betel nuts (Gua) and coconuts, officially formalizing the alliance.</p>
         </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Engagement Ceremony</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Where two families became one, and forever began."</p>
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Mangan</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">The sacred pre-wedding ceremony where seven married women apply turmeric paste and oil, blessing the bride with a radiant glow.</p>
         </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="engagement" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80', 'Sacred Alliance', 'A beautiful promise made in the presence of our loved ones.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-bride-cardinal text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Engagement 🌿</span>
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Diya Mangula Alati</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">A spiritual temple ritual where the bride's attire and bangles are blessed by the deity to ensure a smooth, protected ceremony.</p>
+        </div>
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Kanya Daan</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">The emotional Vedic ritual where the bride's parents formally hand over their daughter's hand to the groom, symbolizing her transition.</p>
+        </div>
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Hastaganti</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">The holy knotting ceremony where the couple's hands are bound with a sacred thread, betel leaves, and mango twigs over the fire.</p>
+        </div>
+        <div class="glass-card-light p-7 rounded-2xl">
+          <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">Kaunri Khela</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">A lighthearted post-wedding game where the couple tries to open each other's closed fists to find hidden sea shells or coins.</p>
         </div>
       </div>
 
-      <!-- Ring Ceremony -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="ring" data-type="album" onclick="switchGalleryTab('ring')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-purple-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Ring Ceremony 💍</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Ring Exchange</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"A sparkling promise worn on the finger and kept in the heart."</p>
-        </div>
+      <!-- Arrow to Albums -->
+      <div class="text-center mt-16">
+        <a href="#gallery" aria-label="Scroll to Gallery" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
+          <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
       </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="ring" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80', 'The Golden Promise', 'A perfect circle of trust, reflecting endless love.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-purple-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Ring Ceremony 💍</span>
-        </div>
-      </div>
-
-      <!-- Bardhara -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="bardhara" data-type="album" onclick="switchGalleryTab('bardhara')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-amber-800 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Bardhara 🪔</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Bardhara Ceremony</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Traditional welcoming of the divine union with elder blessings."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="bardhara" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80', 'Auspicious Bardhara', 'Honoring sacred Odia customs with prayers.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-amber-800 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Bardhara 🪔</span>
-        </div>
-      </div>
-
-      <!-- Haldi -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="haldi" data-type="album" onclick="switchGalleryTab('haldi')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-amber-700 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Haldi 🌼</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Haldi Celebration</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Drenched in golden turmeric, smiles, and endless sunshine."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="haldi" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80', 'Golden Radiance', 'Blessings of yellow turmeric from loving family.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-amber-700 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Haldi 🌼</span>
-        </div>
-      </div>
-
-      <!-- Mehendi -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="mehendi" data-type="album" onclick="switchGalleryTab('mehendi')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Mehendi 🌿</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Mehendi Evening</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Intricate henna patterns woven with eternal devotion."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="mehendi" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80', 'Bridal Henna', 'Intricate patterns gracing the bride’s palms.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Mehendi 🌿</span>
-        </div>
-      </div>
-
-      <!-- Marriage -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="marriage" data-type="album" onclick="switchGalleryTab('marriage')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-bride-cardinal text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Marriage 🌸</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Marriage Ceremony</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Two souls, seven pheras, and a lifetime of togetherness."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="marriage" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80', 'Sacred Mandap', 'The holy pheras by the whispering tides of Gopalpur.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-bride-cardinal text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Marriage 🌸</span>
-        </div>
-      </div>
-
-      <!-- Pala -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="pala" data-type="album" onclick="switchGalleryTab('pala')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-indigo-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Pala 🪘</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Pala Performance</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"Folk cultural recital singing glories of Lord Satyapir."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="pala" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80', 'Sacred Pala', 'Spiritual stories and rhythmic cymbals.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-indigo-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Pala 🪘</span>
-        </div>
-      </div>
-
-      <!-- Reception -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="reception" data-type="album" onclick="switchGalleryTab('reception')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-blue-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">Reception ✨</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">Reception Ceremony</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"A magical night celebrating the beginning of our forever."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="reception" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80', 'Grand Reception', 'Surrounded by warmth, smiles, and extended family.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-blue-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Reception ✨</span>
-        </div>
-      </div>
-
-      <!-- 1st Anniversary -->
-      <div class="gallery-item gallery-cover glass-card-light rounded-2xl overflow-hidden group cursor-pointer" data-cat="anniversary" data-type="album" onclick="switchGalleryTab('anniversary')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-purple-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">1st Anniversary 🥂</span>
-          <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
-        </div>
-        <div class="p-5 text-center">
-          <h5 class="font-serif text-xl font-bold text-bride-cardinal mb-1">1st Anniversary</h5>
-          <p class="text-[11px] text-stone-500 font-semibold tracking-wide italic">"365 days of holding hands and an eternity to go."</p>
-        </div>
-      </div>
-      <div class="gallery-item glass-card-light rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="anniversary" data-type="photo" onclick="openPhotoModal('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80', 'One Year Reunion', 'Celebrating our milestone surrounded by joy.')">
-        <div class="h-64 overflow-hidden relative bg-stone-200">
-          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          <span class="absolute top-3 left-3 bg-purple-900 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">1st Anniversary 🥂</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Hidden Photo Data Store for Instant Popup Slider Navigation -->
-    <div id="photoDataStore" class="hidden">
-      <div class="photo-data" data-cat="engagement" data-src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80" data-title="Sacred Alliance" data-quote="A beautiful promise made in the presence of our loved ones."></div>
-      <div class="photo-data" data-cat="ring" data-src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" data-title="The Golden Promise" data-quote="A perfect circle of trust, reflecting endless love."></div>
-      <div class="photo-data" data-cat="bardhara" data-src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80" data-title="Auspicious Bardhara" data-quote="Honoring sacred Odia customs with prayers."></div>
-      <div class="photo-data" data-cat="haldi" data-src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80" data-title="Golden Radiance" data-quote="Blessings of yellow turmeric from loving family."></div>
-      <div class="photo-data" data-cat="mehendi" data-src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80" data-title="Bridal Henna" data-quote="Intricate patterns gracing the bride’s palms."></div>
-      <div class="photo-data" data-cat="marriage" data-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" data-title="Sacred Mandap" data-quote="The holy pheras by the whispering tides of Gopalpur."></div>
-      <div class="photo-data" data-cat="pala" data-src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80" data-title="Sacred Pala" data-quote="Spiritual stories and rhythmic cymbals."></div>
-      <div class="photo-data" data-cat="reception" data-src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" data-title="Grand Reception" data-quote="Surrounded by warmth, smiles, and extended family."></div>
-      <div class="photo-data" data-cat="anniversary" data-src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80" data-title="One Year Reunion" data-quote="Celebrating our milestone surrounded by joy."></div>
-    </div>
-
-    <!-- Complete 9 Photo Vaults Board (Google Drive Links) -->
-    <div class="glass-card-light p-8 rounded-3xl border border-bride-gold/30 mt-16 text-center max-w-5xl mx-auto">
-      <h3 class="font-cinzel text-2xl font-bold text-bride-cardinal mb-2">The Complete Photo Vaults</h3>
-      <p class="font-serif text-base text-stone-600 mb-6 italic">"A photograph is a pause button on life. Step into our complete archives and relive every fleeting smile."</p>
-      
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        <button onclick="openVault('https://drive.google.com/drive/folders/12up7BLdUS_y4T-0MFwGs41QWGajo3rVh?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Engagement</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1Xk--ewNtaMtD_lhp-keJPA9HmkikKFP1?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Ring Ceremony</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1VkuU7tAddWIY57awvMOmiNTO2abBawQs?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Bardhara</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1kPljzIYm5Xi3vgxW4_st7cxBk7psPes7?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Haldi</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1xjs7aE3fb6fSf4CHwT2sWUZF3kpy2XmL?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Mehendi</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1mze05KvA6abneDeb5WDquVcLQGulL5ho?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Marriage</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1sKY1P6OJ-JAQkrK1YPLeqtQiLd6hSecy?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Pala</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1U67RbbZecvRUEKkNHLIMRogmwupRpg0K?usp=sharing')" class="p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> Reception</button>
-        <button onclick="openVault('https://drive.google.com/drive/folders/1ZUUtBCZpNpwBvOjGNalbDXy4L5J7zZJw?usp=sharing')" class="col-span-2 sm:col-span-1 p-3.5 rounded-xl bg-white border border-bride-gold/40 hover:bg-bride-cardinal hover:text-white text-xs text-bride-cardinal font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> 1st Anniversary</button>
-      </div>
-    </div>
-
-    <!-- Arrow to Cinema -->
-    <div class="text-center mt-16">
-      <a href="#cinema" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
-        <i class="fa-solid fa-chevron-down text-2xl"></i>
-      </a>
     </div>
   </section>
 
-  <!-- ================= SECTION 6: THE CINEMA HUB ================= -->
-  <section id="cinema" class="py-24 bg-bride-midnight text-white relative z-30 overflow-hidden border-t border-bride-gold/30 reveal">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      
+  <!-- ================= SECTION 5: ALBUMS & PHOTO GALLERY (DARK) ================= -->
+  <section id="gallery" class="py-24 px-6 bg-bride-midnight text-white relative z-30 border-y border-bride-gold/30 reveal">
+    <div class="max-w-7xl mx-auto">
       <div class="text-center mb-10">
-        <span class="text-xs uppercase tracking-[0.35em] text-bride-gold font-semibold block mb-2 drop-shadow">
+        <span class="text-xs uppercase tracking-[0.35em] text-bride-goldlight font-semibold block mb-2 drop-shadow">Treasured Memories</span>
+        <h2 class="font-cinzel text-4xl sm:text-5xl gold-foil font-bold">Captured Moments</h2>
+        <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- Upload Photos Button -->
+      <div class="text-center mb-10">
+        <button onclick="openUploadPopup()" class="px-8 py-3 rounded-full bg-bride-gold text-bride-midnight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-goldlight transition shadow-xl inline-flex items-center gap-2">
+          <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Contribute Your Photos
+        </button>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div id="galleryFilters" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 relative z-20"></div>
+
+      <!-- Gallery Grid Rendered Dynamically -->
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10"></div>
+
+      <!-- Complete 9 Photo Vaults Board -->
+      <div class="glass-card-dark p-8 rounded-3xl border border-bride-gold/30 mt-16 text-center max-w-5xl mx-auto">
+        <h3 class="font-cinzel text-2xl font-bold text-bride-goldlight mb-2"><i class="fa-brands fa-google-drive text-bride-gold mr-2"></i>The Complete Photo Vaults</h3>
+        <p class="font-serif text-base text-stone-300 mb-6 italic">"A photograph is a pause button on life. Step into our complete archives and relive every fleeting smile."</p>
+        <div id="vaultButtonsContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+      </div>
+
+      <!-- Arrow to Cinema -->
+      <div class="text-center mt-16">
+        <a href="#cinema" aria-label="Scroll to Cinema Hub" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
+          <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6: THE CINEMA HUB (LIGHT) ================= -->
+  <section id="cinema" class="py-24 px-6 bg-bride-blush relative z-30 reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2 drop-shadow">
           Moments Fade, But Love In Motion Remains Forever
         </span>
-        <h2 class="font-cinzel text-4xl sm:text-6xl text-white font-extrabold mb-4">The Cinema Hub</h2>
-        <p class="text-stone-300 text-sm max-w-2xl mx-auto leading-relaxed">
+        <h2 class="font-cinzel text-4xl sm:text-6xl text-bride-cardinal font-extrabold mb-4">The Cinema Hub</h2>
+        <p class="text-stone-600 text-sm max-w-2xl mx-auto leading-relaxed">
           Every smile, every sacred vow, and every heartfelt tear captured in timeless motion pictures.
         </p>
         <div class="w-24 h-1 bg-bride-gold mx-auto mt-6 rounded-full shadow-lg"></div>
@@ -820,315 +623,142 @@
 
       <!-- Guest Video Contribute Button -->
       <div class="text-center mb-10">
-        <button onclick="openUploadPopup()" class="px-8 py-3 rounded-full bg-bride-gold text-bride-midnight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-goldlight transition shadow-xl inline-flex items-center gap-2">
+        <button onclick="openUploadPopup()" class="px-8 py-3 rounded-full bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-bride-rose transition shadow-xl inline-flex items-center gap-2">
           <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Contribute Your Videos
         </button>
       </div>
 
       <!-- Cinema Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
-        <button id="cinema-btn-all" onclick="filterCinema('all')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-bride-cardinal text-bride-goldlight border border-bride-gold/60 shadow-lg">All Events</button>
-        <button id="cinema-btn-engagement" onclick="filterCinema('engagement')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Engagement</button>
-        <button id="cinema-btn-prewedding" onclick="filterCinema('prewedding')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Pre-Wedding</button>
-        <button id="cinema-btn-ring" onclick="filterCinema('ring')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Ring Ceremony</button>
-        <button id="cinema-btn-wedding" onclick="filterCinema('wedding')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-black/40 text-stone-300 border border-bride-gold/30 hover:border-bride-gold">Wedding</button>
-      </div>
+      <div id="cinemaFilters" class="flex flex-wrap items-center justify-center gap-3 mb-12"></div>
 
-      <!-- Cinema Cards Grid with Dummy / Lock Cards -->
-      <div id="cinemaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-
-        <!-- 1. Teaser of Engagement -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden group cursor-pointer" data-cat="engagement" onclick="launchCinema('Teaser of Engagement', 'A cinematic glimpse into the sacred rituals and beginning of our journey.', 'iWriHLbstAg')">
-          <div class="relative aspect-video overflow-hidden">
-            <img src="https://img.youtube.com/vi/iWriHLbstAg/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-play ml-1"></i>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-blue-900/90 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-blue-500">Teaser • 4K HDR</span>
-            <span class="absolute bottom-3 right-3 bg-black/80 text-bride-goldlight text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
-          </div>
-          <div class="p-6">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">Teaser of Engagement</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-3">A cinematic glimpse into the sacred rituals, heartfelt blessings, and the beautiful beginning of our journey.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> Watch Teaser</span>
-          </div>
-        </div>
-
-        <!-- 2. Highlights of Engagement -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden group cursor-pointer" data-cat="engagement" onclick="launchCinema('Highlights of Engagement', 'Relive the joy and beautiful family moments that made our Nirbandha unforgettable.', 'SXwykKF85Bo')">
-          <div class="relative aspect-video overflow-hidden">
-            <img src="https://img.youtube.com/vi/SXwykKF85Bo/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-play ml-1"></i>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-blue-900/90 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-blue-500">Highlights • 4K</span>
-            <span class="absolute bottom-3 right-3 bg-black/80 text-bride-goldlight text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
-          </div>
-          <div class="p-6">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">Highlights of Engagement</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-3">Relive the joy, the tears, and the beautiful family moments that made our Nirbandha unforgettable.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> Watch Highlights</span>
-          </div>
-        </div>
-
-        <!-- 3. Engagement Ceremony (Dummy Lock) -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden relative cursor-default" data-cat="engagement">
-          <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover filter blur-[3px] brightness-75">
-            <div class="absolute inset-0 bg-black/55 backdrop-blur-[6px] flex flex-col items-center justify-center">
-              <div class="w-14 h-14 rounded-full bg-bride-velvet/80 text-bride-goldlight flex items-center justify-center text-xl shadow-lg border border-bride-gold/40 mb-3">
-                <i class="fa-solid fa-lock"></i>
-              </div>
-              <span class="text-[9px] tracking-[0.3em] font-cinzel text-white uppercase font-bold drop-shadow-md bg-black/40 px-4 py-1 rounded-full border border-white/20">Premiering Soon</span>
-            </div>
-          </div>
-          <div class="p-6 opacity-80">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1">Engagement Ceremony</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-4 line-clamp-2">The complete, immersive experience of our formal betrothal, capturing every sacred chant and blessing.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold/70 font-semibold"><i class="fa-solid fa-hourglass-half mr-1"></i> In Post-Production</span>
-          </div>
-        </div>
-
-        <!-- 4. Teaser of Pre-Wedding -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden group cursor-pointer" data-cat="prewedding" onclick="launchCinema('Teaser of Pre-Wedding', 'A magical glimpse into the quiet moments that sparked our forever.', '6Tr09QwXOAo')">
-          <div class="relative aspect-video overflow-hidden">
-            <img src="https://img.youtube.com/vi/6Tr09QwXOAo/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-play ml-1"></i>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-emerald-900/90 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-emerald-500">Teaser • 4K HDR</span>
-            <span class="absolute bottom-3 right-3 bg-black/80 text-bride-goldlight text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
-          </div>
-          <div class="p-6">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">Teaser of Pre-Wedding</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-3">A beautiful glimpse into the quiet, magical moments that sparked our forever.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> Watch Teaser</span>
-          </div>
-        </div>
-
-        <!-- 5. Pre-Wedding Shoot -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden group cursor-pointer border border-emerald-600/30" data-cat="prewedding" onclick="launchCinema('Pre-Wedding Shoot', 'Our official pre-wedding motion picture of love and laughter.', '4DvobIfKaE4')">
-          <div class="relative aspect-video overflow-hidden">
-            <img src="https://img.youtube.com/vi/4DvobIfKaE4/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-play ml-1"></i>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-emerald-900/90 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-emerald-500">Official Film • 4K</span>
-            <span class="absolute bottom-3 right-3 bg-black/80 text-bride-goldlight text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
-          </div>
-          <div class="p-6">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">Pre-Wedding Shoot</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-3">Our official pre-wedding motion picture, a scenic journey of love, laughter, and cinematic storytelling.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> Watch Film</span>
-          </div>
-        </div>
-
-        <!-- 6. Teaser of Ring Ceremony (Dummy Locked) -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden relative cursor-default" data-cat="ring">
-          <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
-            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover filter blur-[3px] brightness-75">
-            <div class="absolute inset-0 bg-black/55 backdrop-blur-[6px] flex flex-col items-center justify-center">
-              <div class="w-14 h-14 rounded-full bg-bride-velvet/80 text-bride-goldlight flex items-center justify-center text-xl shadow-lg border border-bride-gold/40 mb-3">
-                <i class="fa-solid fa-lock"></i>
-              </div>
-              <span class="text-[9px] tracking-[0.3em] font-cinzel text-white uppercase font-bold drop-shadow-md bg-black/40 px-4 py-1 rounded-full border border-white/20">Premiering Soon</span>
-            </div>
-          </div>
-          <div class="p-6 opacity-80">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1">Teaser for Ring Ceremony</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-4 line-clamp-2">A dazzling preview of an evening filled with sparkling rings, warm toasts, and celebrations.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold/70 font-semibold"><i class="fa-solid fa-hourglass-half mr-1"></i> In Post-Production</span>
-          </div>
-        </div>
-
-        <!-- 7. Teaser of Wedding -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden group cursor-pointer" data-cat="wedding" onclick="launchCinema('Teaser of Wedding Ceremony', 'A tiny glimpse of the biggest day of our lives beside the Gopalpur shores.', 'qY6Kui1D4qk')">
-          <div class="relative aspect-video overflow-hidden">
-            <img src="https://img.youtube.com/vi/qY6Kui1D4qk/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-play ml-1"></i>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-red-900/90 text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-red-500">Teaser • 4K HDR</span>
-            <span class="absolute bottom-3 right-3 bg-black/80 text-bride-goldlight text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
-          </div>
-          <div class="p-6">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">Teaser of Wedding</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-3">A tiny glimpse of the biggest day of our lives, wrapped in ocean breeze and love.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> Watch Teaser</span>
-          </div>
-        </div>
-
-        <!-- 8. Highlights of Wedding (Dummy Locked) -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden relative cursor-default" data-cat="wedding">
-          <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover filter blur-[3px] brightness-75">
-            <div class="absolute inset-0 bg-black/55 backdrop-blur-[6px] flex flex-col items-center justify-center">
-              <div class="w-14 h-14 rounded-full bg-bride-velvet/80 text-bride-goldlight flex items-center justify-center text-xl shadow-lg border border-bride-gold/40 mb-3">
-                <i class="fa-solid fa-lock"></i>
-              </div>
-              <span class="text-[9px] tracking-[0.3em] font-cinzel text-white uppercase font-bold drop-shadow-md bg-black/40 px-4 py-1 rounded-full border border-white/20">Premiering Soon</span>
-            </div>
-          </div>
-          <div class="p-6 opacity-80">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1">Highlights of Wedding</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-4 line-clamp-2">All our favorite moments stitched together into a beautiful memory of forever.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold/70 font-semibold"><i class="fa-solid fa-hourglass-half mr-1"></i> In Post-Production</span>
-          </div>
-        </div>
-
-        <!-- 9. Wedding Ceremony Full (Dummy Locked) -->
-        <div class="glass-card-dark rounded-3xl overflow-hidden relative cursor-default" data-cat="wedding">
-          <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
-            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover filter blur-[3px] brightness-75">
-            <div class="absolute inset-0 bg-black/55 backdrop-blur-[6px] flex flex-col items-center justify-center">
-              <div class="w-14 h-14 rounded-full bg-bride-velvet/80 text-bride-goldlight flex items-center justify-center text-xl shadow-lg border border-bride-gold/40 mb-3">
-                <i class="fa-solid fa-lock"></i>
-              </div>
-              <span class="text-[9px] tracking-[0.3em] font-cinzel text-white uppercase font-bold drop-shadow-md bg-black/40 px-4 py-1 rounded-full border border-white/20">Premiering Soon</span>
-            </div>
-          </div>
-          <div class="p-6 opacity-80">
-            <h4 class="font-cinzel text-lg font-bold text-white mb-1">Wedding Ceremony</h4>
-            <p class="text-xs text-stone-400 leading-relaxed mb-4 line-clamp-2">The entire unedited magic of the day two souls officially became one.</p>
-            <span class="text-[10px] uppercase tracking-wider text-bride-gold/70 font-semibold"><i class="fa-solid fa-hourglass-half mr-1"></i> In Post-Production</span>
-          </div>
-        </div>
-
-      </div>
+      <!-- Dynamic Cinema Grid -->
+      <div id="cinemaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
 
       <!-- Arrow to Our Story -->
       <div class="text-center mt-16">
-        <a href="#anniversary" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
+        <a href="#anniversary" aria-label="Scroll to Anniversary Story" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
           <i class="fa-solid fa-chevron-down text-2xl"></i>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ================= SECTION 7: THE CHAPTER CONTINUES ================= -->
-  <section id="anniversary" class="py-28 px-6 max-w-7xl mx-auto relative z-30 reveal">
-    <div class="text-center mb-16">
-      <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">
-        A Sacred Milestone Surpassed • Still Counting Forever
-      </span>
-      <h2 class="font-cinzel text-4xl sm:text-5xl text-bride-cardinal font-bold">The Chapter Continues</h2>
-      <p class="text-stone-600 text-sm max-w-xl mx-auto mt-3">
-        From the sacred ocean shores of Gopalpur into a lifetime of shared dreams, laughter, and endless companionhood.
-      </p>
-      <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
-    </div>
+  <!-- ================= SECTION 7: THE CHAPTER CONTINUES (DARK) ================= -->
+  <section id="anniversary" class="py-28 px-6 bg-bride-midnight text-white relative z-30 border-y border-bride-gold/30 reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.35em] text-bride-goldlight font-semibold block mb-2">
+          A Sacred Milestone Surpassed • Still Counting Forever
+        </span>
+        <h2 class="font-cinzel text-4xl sm:text-5xl gold-foil font-bold">The Chapter Continues</h2>
+        <p class="text-stone-300 text-sm max-w-xl mx-auto mt-3">
+          From the sacred ocean shores of Gopalpur into a lifetime of shared dreams, laughter, and endless companionhood.
+        </p>
+        <div class="w-24 h-1 bg-bride-gold mx-auto mt-4 rounded-full"></div>
+      </div>
 
-    <div class="max-w-5xl mx-auto glass-card-light rounded-3xl p-8 sm:p-12 border-2 border-bride-gold/40 shadow-2xl relative overflow-hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <div class="lg:col-span-7 space-y-6">
-          <div class="flex items-center gap-2">
-            <span class="px-4 py-1.5 rounded-full bg-bride-cardinal text-white text-xs font-bold uppercase tracking-widest inline-block shadow-sm">
-              365+ Days of Sacred Bond 🥂
-            </span>
-            <span class="text-xs text-bride-golddark font-semibold tracking-wider uppercase">
-              #AbhishaForever
-            </span>
-          </div>
-
-          <h3 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 leading-tight">
-            Our First Year Behind Us, <br class="hidden sm:inline">
-            <span class="font-script text-bride-cardinal text-4xl sm:text-5xl lowercase">an eternity</span> Yet to Write
-          </h3>
-
-          <p class="text-stone-600 text-sm leading-relaxed">
-            Our wedding day was the first sacred step around Agni Devata. Over 365 sunrises later, our promise remains as steady as the Gopalpur tide and as vibrant as the Katak sky.
-          </p>
-
-          <!-- Interactive Memory Capsule -->
-          <div class="bg-rose-50/70 border border-bride-gold/30 rounded-2xl p-6 relative shadow-inner">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] uppercase font-bold text-bride-cardinal tracking-widest flex items-center gap-1.5">
-                <i class="fa-solid fa-heart pulse-heart text-bride-cardinal"></i> MEMORY CAPSULE
+      <div class="max-w-5xl mx-auto glass-card-dark rounded-3xl p-8 sm:p-12 border-2 border-bride-gold/40 shadow-2xl relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="flex items-center gap-2">
+              <span class="px-4 py-1.5 rounded-full bg-bride-cardinal text-bride-goldlight text-xs font-bold uppercase tracking-widest inline-block shadow-sm">
+                365+ Days of Sacred Bond 🥂
               </span>
-              <span id="memoryCounter" class="text-[10px] font-mono text-stone-400">1 / 5</span>
+              <span class="text-xs text-bride-gold font-semibold tracking-wider uppercase">
+                #AbhishaForever
+              </span>
             </div>
-            
-            <p id="memoryQuoteText" class="font-serif text-lg sm:text-xl text-stone-800 italic leading-relaxed min-h-[56px] flex items-center transition-opacity duration-300">
-              "Golden desert sunsets and city lights mirrored in your eyes, beginning our journey where dreams touch the sky."
+
+            <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+              Our First Year Behind Us, <br class="hidden sm:inline">
+              <span class="font-script text-bride-gold text-4xl sm:text-5xl lowercase">an eternity</span> Yet to Write
+            </h3>
+
+            <p class="text-stone-300 text-sm leading-relaxed">
+              Our wedding day was the first sacred step around Agni Devata. Over 365 sunrises later, our promise remains as steady as the Gopalpur tide and as vibrant as the Katak sky.
             </p>
-            
-            <div class="mt-4 pt-4 border-t border-bride-gold/20 flex items-center justify-between">
-              <span id="memoryLocationText" class="text-xs font-semibold text-bride-golddark transition-opacity duration-300">
-                <i class="fa-solid fa-plane-departure mr-1 text-bride-cardinal"></i> Honeymoon in Dubai
-              </span>
-              <button onclick="revealNextMemory()" class="px-4 py-1.5 rounded-full bg-bride-cardinal hover:bg-bride-rose text-white text-[11px] font-bold tracking-wider uppercase transition shadow flex items-center gap-1.5 relative z-20">
-                <span>Next Memory</span> <i class="fa-solid fa-sparkles text-xs"></i>
-              </button>
-            </div>
-          </div>
 
-          <div class="pt-2 flex flex-wrap gap-4 relative z-20">
-            <a href="#gallery" class="px-6 py-2.5 rounded-full bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-wider uppercase font-bold hover:bg-bride-rose transition shadow-md flex items-center gap-2">
-              <i class="fa-solid fa-images"></i> Relive Our Albums
-            </a>
-            <a href="#cinema" class="px-6 py-2.5 rounded-full bg-bride-cardinal text-bride-goldlight font-cinzel text-xs tracking-wider uppercase font-bold hover:bg-bride-rose transition shadow-md flex items-center gap-2">
-              <i class="fa-solid fa-circle-play text-bride-gold"></i> Relive our Best Day
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 relative rounded-3xl overflow-hidden aspect-4/5 shadow-2xl border-2 border-bride-gold/40">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="Forever Barsha & Abhisek" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
-            <div class="bg-black/40 backdrop-blur-md rounded-2xl p-4 border border-white/20 mb-3">
-              <span class="text-[9px] uppercase tracking-[0.25em] text-bride-goldlight font-semibold block mb-1">DAYS IN HARMONY</span>
-              <div class="font-serif text-3xl font-bold text-white flex items-baseline gap-2">
-                <span id="storyDaysCount">--</span> <span class="text-sm font-sans text-stone-300 font-normal uppercase tracking-widest">Days & Counting</span>
+            <!-- Memory Capsule -->
+            <div class="bg-black/40 border border-bride-gold/30 rounded-2xl p-6 relative shadow-inner">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] uppercase font-bold text-bride-gold tracking-widest flex items-center gap-1.5">
+                  <i class="fa-solid fa-heart pulse-heart text-bride-rose"></i> MEMORY CAPSULE
+                </span>
+                <span id="memoryCounter" class="text-[10px] font-mono text-stone-400">1 / 5</span>
+              </div>
+              
+              <p id="memoryQuoteText" class="font-serif text-lg sm:text-xl text-stone-100 italic leading-relaxed min-h-[56px] flex items-center transition-opacity duration-300">
+                "Golden desert sunsets and city lights mirrored in your eyes, beginning our journey where dreams touch the sky."
+              </p>
+              
+              <div class="mt-4 pt-4 border-t border-bride-gold/20 flex items-center justify-between">
+                <span id="memoryLocationText" class="text-xs font-semibold text-bride-goldlight transition-opacity duration-300">
+                  <i class="fa-solid fa-plane-departure mr-1 text-bride-rose"></i> Honeymoon in Dubai
+                </span>
+                <button onclick="revealNextMemory()" class="px-4 py-1.5 rounded-full bg-bride-gold hover:bg-bride-goldlight text-bride-midnight text-[11px] font-bold tracking-wider uppercase transition shadow flex items-center gap-1.5 relative z-20">
+                  <span>Next Memory</span> <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+                </button>
               </div>
             </div>
-            <p class="font-script text-3xl sm:text-4xl text-bride-goldlight">Forever & Always #BarshaAbhisek</p>
+
+            <div class="pt-2 flex flex-wrap gap-4 relative z-20">
+              <a href="#gallery" class="px-6 py-2.5 rounded-full bg-bride-cardinal text-white font-cinzel text-xs tracking-wider uppercase font-bold hover:bg-bride-rose transition shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-images"></i> Relive Our Albums
+              </a>
+              <a href="#cinema" class="px-6 py-2.5 rounded-full bg-white/10 text-white border border-bride-gold/40 font-cinzel text-xs tracking-wider uppercase font-bold hover:bg-bride-gold hover:text-bride-midnight transition shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-circle-play text-bride-gold"></i> Relive our Best Day
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl border-2 border-bride-gold/40">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="Forever Barsha & Abhisek" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
+              <div class="bg-black/40 backdrop-blur-md rounded-2xl p-4 border border-white/20 mb-3">
+                <span class="text-[9px] uppercase tracking-[0.25em] text-bride-goldlight font-semibold block mb-1">DAYS IN HARMONY</span>
+                <div class="font-serif text-3xl font-bold text-white flex items-baseline gap-2">
+                  <span id="storyDaysCount">--</span> <span class="text-sm font-sans text-stone-300 font-normal uppercase tracking-widest">Days & Counting</span>
+                </div>
+              </div>
+              <p class="font-script text-3xl sm:text-4xl text-bride-goldlight">Forever & Always #BarshaAbhisek</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-bride-gold/20 text-center">
+          <div class="p-4 rounded-2xl bg-black/40 border border-bride-gold/25">
+            <span class="text-2xl mb-1 block">🌿</span>
+            <h5 class="font-serif text-base font-bold text-bride-goldlight">Sacred Roots</h5>
+            <p class="text-xs text-stone-400 mt-1">Grounded in Vedic traditions and unconditional elder blessings.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-black/40 border border-bride-gold/25">
+            <span class="text-2xl mb-1 block">🕊️</span>
+            <h5 class="font-serif text-base font-bold text-bride-goldlight">Peaceful Growth</h5>
+            <p class="text-xs text-stone-400 mt-1">Learning, laughing, and building our world hand in hand.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-black/40 border border-bride-gold/25">
+            <span class="text-2xl mb-1 block">✨</span>
+            <h5 class="font-serif text-base font-bold text-bride-goldlight">Unwritten Tomorrows</h5>
+            <p class="text-xs text-stone-400 mt-1">Looking ahead to countless anniversaries yet to be celebrated.</p>
           </div>
         </div>
 
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-bride-gold/20 text-center">
-        <div class="p-4 rounded-2xl bg-white/70 border border-bride-gold/25">
-          <span class="text-2xl mb-1 block">🌿</span>
-          <h5 class="font-serif text-base font-bold text-bride-cardinal">Sacred Roots</h5>
-          <p class="text-xs text-stone-600 mt-1">Grounded in Vedic traditions and unconditional elder blessings.</p>
-        </div>
-        <div class="p-4 rounded-2xl bg-white/70 border border-bride-gold/25">
-          <span class="text-2xl mb-1 block">🕊️</span>
-          <h5 class="font-serif text-base font-bold text-bride-cardinal">Peaceful Growth</h5>
-          <p class="text-xs text-stone-600 mt-1">Learning, laughing, and building our world hand in hand.</p>
-        </div>
-        <div class="p-4 rounded-2xl bg-white/70 border border-bride-gold/25">
-          <span class="text-2xl mb-1 block">✨</span>
-          <h5 class="font-serif text-base font-bold text-bride-cardinal">Unwritten Tomorrows</h5>
-          <p class="text-xs text-stone-600 mt-1">Looking ahead to countless anniversaries yet to be celebrated.</p>
-        </div>
+      <!-- Arrow to Wishes -->
+      <div class="text-center mt-16">
+        <a href="#blessings" aria-label="Scroll to Wishes Wall" class="inline-block text-bride-goldlight/80 hover:text-white transition animate-float cursor-pointer">
+          <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
       </div>
-
-    </div>
-
-    <!-- Arrow to Wishes -->
-    <div class="text-center mt-16">
-      <a href="#blessings" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer">
-        <i class="fa-solid fa-chevron-down text-2xl"></i>
-      </a>
     </div>
   </section>
 
-  <!-- ================= SECTION 8: GUEST BLESSINGS WALL ================= -->
-  <section id="blessings" class="py-24 bg-rose-50/50 border-t border-bride-gold/25 relative z-30 reveal">
-    <div class="max-w-4xl mx-auto px-6">
+  <!-- ================= SECTION 8: GUEST BLESSINGS WALL (LIGHT) ================= -->
+  <section id="blessings" class="py-24 px-6 bg-bride-blush relative z-30 reveal">
+    <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.35em] text-bride-golddark font-semibold block mb-2">Community Blessings</span>
         <h2 class="font-cinzel text-3xl sm:text-5xl text-bride-cardinal font-bold">Wishes & Prayers</h2>
@@ -1138,9 +768,14 @@
 
       <div class="glass-card-light p-8 rounded-3xl mb-10 shadow-md">
         <h3 class="font-serif text-2xl font-bold text-center mb-6 text-bride-cardinal">Send Your Blessings to Barsha & Abhisek</h3>
+        
         <form id="blessingForm" onsubmit="postBlessing(event)" class="space-y-4">
-          <input type="text" id="bName" placeholder="Your Name & Family Title" required class="w-full px-5 py-3 rounded-xl border border-bride-gold/30 bg-white/90 text-sm focus:outline-none focus:border-bride-cardinal">
-          <textarea id="bMsg" rows="3" placeholder="Share your heartfelt blessing and prayer for the couple..." required class="w-full px-5 py-3 rounded-xl border border-bride-gold/30 bg-white/90 text-sm focus:outline-none focus:border-bride-cardinal"></textarea>
+          <!-- Anti-spam Honeypot Field -->
+          <input type="text" id="bWebsiteTrap" name="website" class="hidden" tabindex="-1" autocomplete="off">
+          
+          <input type="text" id="bName" maxlength="80" placeholder="Your Name & Family Title" required class="w-full px-5 py-3 rounded-xl border border-bride-gold/30 bg-white text-sm focus:outline-none focus:border-bride-cardinal">
+          <textarea id="bMsg" rows="3" maxlength="600" placeholder="Share your heartfelt blessing and prayer for the couple..." required class="w-full px-5 py-3 rounded-xl border border-bride-gold/30 bg-white text-sm focus:outline-none focus:border-bride-cardinal"></textarea>
+          
           <button type="submit" id="submitBlessingBtn" class="group w-full py-3.5 rounded-xl bg-bride-cardinal text-bride-goldlight font-semibold text-xs tracking-widest uppercase hover:bg-bride-rose transition shadow-lg flex items-center justify-center gap-2">
             <span>Bestow Blessing</span> <i class="fa-solid fa-feather group-hover:scale-110 transition-transform"></i>
           </button>
@@ -1164,38 +799,51 @@
 
     <!-- Top Arrow -->
     <div class="text-center mt-16">
-      <a href="#top" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer relative z-20" title="Return to Top">
+      <a href="#top" aria-label="Return to top" class="inline-block text-bride-golddark hover:text-bride-cardinal transition animate-float cursor-pointer relative z-20" title="Return to Top">
         <i class="fa-solid fa-chevron-up text-2xl"></i>
       </a>
     </div>
   </section>
 
-  <!-- ================= MODALS & OVERLAYS ================= -->
+  <!-- ================= SECTION 9: LUXURY SCRIPT FOOTER (DARK) ================= -->
+  <footer class="py-16 sm:py-20 bg-bride-midnight text-white text-center border-t border-bride-gold/30 relative z-30">
+    <p class="font-script text-5xl sm:text-6xl md:text-7xl gold-foil mb-3 select-none drop-shadow-md">
+      Barsha <span class="text-4xl sm:text-5xl md:text-6xl">&</span> Abhisek
+    </p>
+    <p class="text-bride-goldlight/80 uppercase text-[10px] sm:text-[11px] tracking-[0.3em] font-semibold mb-4 drop-shadow-sm">
+      #BARSHAWEDSABHISEK &bull; FOREVER UNITED &bull; #ABHISHA
+    </p>
+    <p class="text-stone-400 text-xs sm:text-sm tracking-wide font-light">
+      Crafted with love for our wedding memories. &copy; 2025&ndash;2026
+    </p>
+  </footer>
+
+  <!-- ================= MODALS & CONTROLS ================= -->
 
   <!-- Fullscreen Photo Lightbox Modal -->
-  <div id="photoModal" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4">
-    <button onclick="closePhotoModal(true)" class="absolute top-6 right-6 text-white text-3xl hover:text-bride-gold z-50 transition-colors">
+  <div id="photoModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4">
+    <button onclick="closePhotoModal(true)" aria-label="Close photo preview" class="absolute top-6 right-6 text-white text-3xl hover:text-bride-gold z-50 transition-colors">
       <i class="fa-solid fa-xmark"></i>
     </button>
     
-    <button id="photoPrevBtn" onclick="prevPhoto(event)" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-3xl sm:text-4xl z-50 transition-colors bg-black/40 rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md">
+    <button id="photoPrevBtn" onclick="prevPhoto(event)" aria-label="Previous photo" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-3xl sm:text-4xl z-50 transition-colors bg-black/40 rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
     
-    <button id="photoNextBtn" onclick="nextPhoto(event)" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-3xl sm:text-4xl z-50 transition-colors bg-black/40 rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md">
+    <button id="photoNextBtn" onclick="nextPhoto(event)" aria-label="Next photo" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-3xl sm:text-4xl z-50 transition-colors bg-black/40 rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
 
     <div class="max-w-4xl text-center relative z-40 w-full px-4">
-      <img id="modalImg" src="" alt="Full view" class="max-h-[75vh] max-w-full mx-auto rounded-2xl shadow-2xl border border-bride-gold/30 transition-opacity duration-200">
+      <img id="modalImg" src="" alt="Wedding celebration memory" class="max-h-[75vh] max-w-full mx-auto rounded-2xl shadow-2xl border border-bride-gold/30 transition-opacity duration-200">
       <h5 id="modalTitle" class="mt-4 font-serif text-2xl font-bold text-bride-goldlight"></h5>
       <p id="modalQuote" class="mt-1 text-sm italic text-stone-300 max-w-xl mx-auto"></p>
     </div>
   </div>
 
   <!-- 4K Cinema Player Modal -->
-  <div id="cinemaModal" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-0 md:p-4">
-    <button id="cinemaCloseBtn" onclick="closeCinemaModal(true)" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white text-3xl hover:text-bride-gold z-50 transition-colors drop-shadow-md">
+  <div id="cinemaModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-0 md:p-4">
+    <button id="cinemaCloseBtn" onclick="closeCinemaModal(true)" aria-label="Close cinema player" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white text-3xl hover:text-bride-gold z-50 transition-colors drop-shadow-md">
       <i class="fa-solid fa-xmark"></i>
     </button>
     
@@ -1203,10 +851,10 @@
       
       <div id="videoStage" class="w-full h-full md:aspect-video bg-black relative overflow-hidden select-none flex items-center justify-center">
         
-        <button id="vidPrevBtn" onclick="prevVideo(event)" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-2xl sm:text-3xl z-40 transition-opacity duration-300 bg-black/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center backdrop-blur-md">
+        <button id="vidPrevBtn" onclick="prevVideo(event)" aria-label="Previous video" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-2xl sm:text-3xl z-40 transition-opacity duration-300 bg-black/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center backdrop-blur-md">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
-        <button id="vidNextBtn" onclick="nextVideo(event)" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-2xl sm:text-3xl z-40 transition-opacity duration-300 bg-black/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center backdrop-blur-md">
+        <button id="vidNextBtn" onclick="nextVideo(event)" aria-label="Next video" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-bride-gold text-2xl sm:text-3xl z-40 transition-opacity duration-300 bg-black/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center backdrop-blur-md">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
 
@@ -1217,22 +865,23 @@
 
         <iframe id="creatorFrame" class="w-full h-full hidden" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
         
+        <!-- Controls bar with pointer-events protection -->
         <div id="customControlsBar" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent px-4 sm:px-6 py-4 z-30 transition-opacity duration-300 flex flex-col gap-2">
-          <input type="range" id="videoScrubber" min="0" max="100" value="0" step="0.1" class="w-full h-1 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-bride-gold" oninput="onScrub(this.value)">
+          <input type="range" id="videoScrubber" min="0" max="100" value="0" step="0.1" class="w-full h-1 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-bride-gold" onchange="onScrubChange(this.value)">
 
           <div class="flex items-center justify-between text-xs text-stone-200">
             <div class="flex items-center gap-3">
-              <button onclick="togglePlayState()" id="playPauseBtn" class="w-8 h-8 flex items-center justify-center text-bride-gold hover:text-white transition text-base">
+              <button onclick="togglePlayState()" id="playPauseBtn" aria-label="Toggle play and pause" class="w-8 h-8 flex items-center justify-center text-bride-gold hover:text-white transition text-base">
                 <i class="fa-solid fa-play"></i>
               </button>
               <span id="timeDisplay" class="font-mono text-[11px] text-stone-300">0:00 / 0:00</span>
             </div>
             
             <div class="flex items-center gap-4">
-              <button onclick="toggleMute()" id="muteBtn" class="text-stone-300 hover:text-bride-gold transition text-base">
+              <button onclick="toggleMute()" id="muteBtn" aria-label="Toggle mute" class="text-stone-300 hover:text-bride-gold transition text-base">
                 <i class="fa-solid fa-volume-high"></i>
               </button>
-              <button onclick="toggleImmersiveFullscreen()" title="Fullscreen" class="text-stone-200 hover:text-bride-gold transition text-base">
+              <button onclick="toggleImmersiveFullscreen()" id="fsBtn" aria-label="Toggle fullscreen" class="text-stone-200 hover:text-bride-gold transition text-base">
                 <i id="fsIcon" class="fa-solid fa-expand"></i>
               </button>
             </div>
@@ -1255,16 +904,16 @@
   </div>
 
   <!-- QR Scan & Share Modal -->
-  <div id="shareModal" class="fixed inset-0 z-[100] bg-black/85 hidden items-center justify-center p-4">
+  <div id="shareModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] bg-black/85 hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center relative border border-bride-gold/40 shadow-2xl">
-      <button onclick="closeShareModal()" class="absolute top-4 right-4 text-stone-400 hover:text-black text-xl">
+      <button onclick="closeShareModal()" aria-label="Close share dialog" class="absolute top-4 right-4 text-stone-400 hover:text-black text-xl">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <h4 class="font-serif text-2xl font-bold text-bride-cardinal mb-2">SCAN & SHARE</h4>
       <p class="text-xs text-stone-600 mb-6">Scan to open Barsha & Abhisek's wedding celebration</p>
       
       <div class="p-4 bg-stone-50 rounded-2xl inline-block border border-bride-gold/30 mb-6 shadow-inner">
-        <img id="qrImg" src="" alt="QR Code" class="mx-auto rounded w-44 h-44">
+        <img id="qrImg" src="" alt="QR Code for Wedding Site" class="mx-auto rounded w-44 h-44">
       </div>
 
       <button onclick="copyCurrentLink()" class="w-full py-3 rounded-xl bg-bride-cardinal text-white text-xs uppercase tracking-widest font-bold hover:bg-bride-rose transition shadow-md">
@@ -1273,35 +922,59 @@
     </div>
   </div>
 
-  <!-- 3 Floating Quick Action Buttons -->
+  <!-- Floating Quick Actions -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-    <button id="installAppBtn" onclick="triggerPwaInstall()" class="hidden w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Install App">
+    <button id="installAppBtn" onclick="triggerPwaInstall()" aria-label="Install Wedding App" class="hidden w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Install App">
       <i class="fa-solid fa-download text-base"></i>
     </button>
-    <button onclick="openShareModal()" class="w-12 h-12 rounded-full bg-white text-bride-cardinal border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Scan & Share">
+    <button onclick="openShareModal()" aria-label="Scan & Share QR Code" class="w-12 h-12 rounded-full bg-white text-bride-cardinal border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Scan & Share">
       <i class="fa-solid fa-qrcode text-base"></i>
     </button>
-    <button id="musicToggleBtn" onclick="toggleAudio()" class="w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Ambient Music">
+    <button id="musicToggleBtn" onclick="toggleAudio()" aria-label="Toggle ambient wedding melody" class="w-12 h-12 rounded-full bg-bride-cardinal text-bride-goldlight border-2 border-bride-gold/70 shadow-2xl flex items-center justify-center hover:scale-110 transition duration-300" title="Ambient Music">
       <i id="audioIcon" class="fa-solid fa-music text-base"></i>
     </button>
   </div>
 
-  <!-- Beautified Luxury Script Footer -->
-  <footer class="py-16 sm:py-20 bg-bride-midnight text-white text-center border-t border-bride-gold/30 relative z-30">
-    <p class="font-script text-5xl sm:text-6xl md:text-7xl gold-foil mb-3 select-none drop-shadow-md">
-      Barsha <span class="text-4xl sm:text-5xl md:text-6xl">&</span> Abhisek
-    </p>
-    <p class="text-bride-goldlight/80 uppercase text-[10px] sm:text-[11px] tracking-[0.3em] font-semibold mb-4 drop-shadow-sm">
-      #BARSHAWEDSABHISEK &bull; FOREVER UNITED &bull; #ABHISHA
-    </p>
-    <p class="text-stone-400 text-xs sm:text-sm tracking-wide font-light">
-      Crafted with love for our wedding memories. &copy; 2025&ndash;2026
-    </p>
-  </footer>
-
-  <!-- ================= SCRIPTS ================= -->
+  <!-- ================= SCRIPTS & DATA CORE ================= -->
   <script>
-    // Live Milestone Timer (Since 22 Jan 2025)
+    // Safe LocalStorage Helper
+    function safeStorageGet(key, def = null) {
+      try { return localStorage.getItem(key) ?? def; } catch (e) { return def; }
+    }
+    function safeStorageSet(key, val) {
+      try { localStorage.setItem(key, val); } catch (e) {}
+    }
+
+    // Lightweight Non-Blocking Toast
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-x-full', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-x-full', 'opacity-0');
+      }, 3500);
+    }
+
+    // Mobile Navbar Drawer
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobileNavMenu');
+      const icon = document.getElementById('menuIcon');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        icon.className = 'fa-solid fa-xmark';
+      } else {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        icon.className = 'fa-solid fa-bars';
+      }
+    }
+
+    // Live Milestone Timer (Since 22 Jan 2025, 07:05 AM)
     const weddingTimestamp = new Date('2025-01-22T07:05:00+05:30').getTime();
     function runTimer() {
       const now = new Date().getTime();
@@ -1337,6 +1010,147 @@
       revealElements.forEach(el => revealObserver.observe(el));
     });
 
+    // Central Data Arrays (Clean Data-Driven Architecture)
+    const galleryData = [
+      { id: 'engagement', label: 'Engagement', badge: 'Engagement 🌿', color: 'bg-bride-cardinal', cover: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80', title: 'Engagement Ceremony', quote: 'Where two families became one, and forever began.', photoTitle: 'Sacred Alliance', photoQuote: 'A beautiful promise made in the presence of our loved ones.' },
+      { id: 'ring', label: 'Ring Ceremony', badge: 'Ring Ceremony 💍', color: 'bg-purple-900', cover: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=80', title: 'Ring Exchange', quote: 'A sparkling promise worn on the finger and kept in the heart.', photoTitle: 'The Golden Promise', photoQuote: 'A perfect circle of trust, reflecting endless love.' },
+      { id: 'bardhara', label: 'Bardhara', badge: 'Bardhara 🪔', color: 'bg-amber-800', cover: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80', title: 'Bardhara Ceremony', quote: 'Traditional welcoming of the divine union with elder blessings.', photoTitle: 'Auspicious Bardhara', photoQuote: 'Honoring sacred Odia customs with prayers.' },
+      { id: 'haldi', label: 'Haldi', badge: 'Haldi 🌼', color: 'bg-amber-700', cover: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80', title: 'Haldi Celebration', quote: 'Drenched in golden turmeric, smiles, and endless sunshine.', photoTitle: 'Golden Radiance', photoQuote: 'Blessings of yellow turmeric from loving family.' },
+      { id: 'mehendi', label: 'Mehendi', badge: 'Mehendi 🌿', color: 'bg-emerald-700', cover: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80', title: 'Mehendi Evening', quote: 'Intricate henna patterns woven with eternal devotion.', photoTitle: 'Bridal Henna', photoQuote: 'Intricate patterns gracing the bride’s palms.' },
+      { id: 'marriage', label: 'Marriage', badge: 'Marriage 🌸', color: 'bg-bride-cardinal', cover: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80', title: 'Marriage Ceremony', quote: 'Two souls, seven pheras, and a lifetime of togetherness.', photoTitle: 'Sacred Mandap', photoQuote: 'The holy pheras by the whispering tides of Gopalpur.' },
+      { id: 'pala', label: 'Pala', badge: 'Pala 🪘', color: 'bg-indigo-900', cover: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80', title: 'Pala Performance', quote: 'Folk cultural recital singing glories of Lord Satyapir.', photoTitle: 'Sacred Pala', photoQuote: 'Spiritual stories and rhythmic cymbals.' },
+      { id: 'reception', label: 'Reception', badge: 'Reception ✨', color: 'bg-blue-900', cover: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80', title: 'Reception Ceremony', quote: 'A magical night celebrating the beginning of our forever.', photoTitle: 'Grand Reception', photoQuote: 'Surrounded by warmth, smiles, and extended family.' },
+      { id: 'anniversary', label: '1st Anniversary', badge: '1st Anniversary 🥂', color: 'bg-purple-900', cover: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80', title: '1st Anniversary', quote: '365 days of holding hands and an eternity to go.', photoTitle: 'One Year Reunion', photoQuote: 'Celebrating our milestone surrounded by joy.' }
+    ];
+
+    const vaultLinks = [
+      { name: 'Engagement', url: 'https://drive.google.com/drive/folders/12up7BLdUS_y4T-0MFwGs41QWGajo3rVh?usp=sharing' },
+      { name: 'Ring Ceremony', url: 'https://drive.google.com/drive/folders/1Xk--ewNtaMtD_lhp-keJPA9HmkikKFP1?usp=sharing' },
+      { name: 'Bardhara', url: 'https://drive.google.com/drive/folders/1VkuU7tAddWIY57awvMOmiNTO2abBawQs?usp=sharing' },
+      { name: 'Haldi', url: 'https://drive.google.com/drive/folders/1kPljzIYm5Xi3vgxW4_st7cxBk7psPes7?usp=sharing' },
+      { name: 'Mehendi', url: 'https://drive.google.com/drive/folders/1xjs7aE3fb6fSf4CHwT2sWUZF3kpy2XmL?usp=sharing' },
+      { name: 'Marriage', url: 'https://drive.google.com/drive/folders/1mze05KvA6abneDeb5WDquVcLQGulL5ho?usp=sharing' },
+      { name: 'Pala', url: 'https://drive.google.com/drive/folders/1sKY1P6OJ-JAQkrK1YPLeqtQiLd6hSecy?usp=sharing' },
+      { name: 'Reception', url: 'https://drive.google.com/drive/folders/1U67RbbZecvRUEKkNHLIMRogmwupRpg0K?usp=sharing' },
+      { name: '1st Anniversary', url: 'https://drive.google.com/drive/folders/1ZUUtBCZpNpwBvOjGNalbDXy4L5J7zZJw?usp=sharing', span: true }
+    ];
+
+    const cinemaData = [
+      { cat: 'engagement', title: 'Teaser of Engagement', desc: 'A cinematic glimpse into the sacred rituals, heartfelt blessings, and the beginning of our journey.', yt: 'iWriHLbstAg', badge: 'Teaser • 4K HDR', badgeColor: 'bg-blue-900', cta: 'Watch Teaser' },
+      { cat: 'engagement', title: 'Highlights of Engagement', desc: 'Relive the joy, tears, and beautiful family moments that made our Nirbandha unforgettable.', yt: 'SXwykKF85Bo', badge: 'Highlights • 4K', badgeColor: 'bg-blue-900', cta: 'Watch Highlights' },
+      { cat: 'engagement', title: 'Engagement Ceremony', desc: 'The complete, immersive experience of our formal betrothal, capturing every sacred chant and blessing.', locked: true, img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'prewedding', title: 'Teaser of Pre-Wedding', desc: 'A beautiful glimpse into the quiet, magical moments that sparked our forever.', yt: '6Tr09QwXOAo', badge: 'Teaser • 4K HDR', badgeColor: 'bg-emerald-900', cta: 'Watch Teaser' },
+      { cat: 'prewedding', title: 'Pre-Wedding Shoot', desc: 'Our official pre-wedding motion picture, a scenic journey of love, laughter, and cinematic storytelling.', yt: '4DvobIfKaE4', badge: 'Official Film • 4K', badgeColor: 'bg-emerald-900', cta: 'Watch Film' },
+      { cat: 'ring', title: 'Teaser for Ring Ceremony', desc: 'A dazzling preview of an evening filled with sparkling rings, warm toasts, and joyous celebrations.', locked: true, img: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'wedding', title: 'Teaser of Wedding Ceremony', desc: 'A tiny glimpse of the biggest day of our lives, wrapped in ocean breeze and love.', yt: 'qY6Kui1D4qk', badge: 'Teaser • 4K HDR', badgeColor: 'bg-red-900', cta: 'Watch Teaser' },
+      { cat: 'wedding', title: 'Highlights of Wedding', desc: 'All our favorite moments stitched together into a beautiful memory of forever.', locked: true, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'wedding', title: 'Wedding Ceremony Full', desc: 'The entire unedited magic of the day two souls officially became one.', locked: true, img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80' }
+    ];
+
+    // Build Dynamic Gallery & Cinema
+    function initDynamicComponents() {
+      // 1. Gallery Filters & Cards (Dark Section)
+      const gFilters = document.getElementById('galleryFilters');
+      const gGrid = document.getElementById('galleryGrid');
+      
+      let filterBtnsHtml = `<button id="btn-all" onclick="filterGallery('all')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-bride-cardinal text-white shadow-md border border-bride-gold/40">All Moments</button>`;
+      let gridCardsHtml = '';
+
+      galleryData.forEach(cat => {
+        filterBtnsHtml += `<button id="btn-${cat.id}" onclick="filterGallery('${cat.id}')" class="gallery-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold bg-white/10 text-stone-300 border border-bride-gold/40 hover:bg-white/20">${cat.label}</button>`;
+        
+        // Album Cover
+        gridCardsHtml += `
+          <div class="gallery-item gallery-cover glass-card-dark rounded-2xl overflow-hidden group cursor-pointer" data-cat="${cat.id}" data-type="album" onclick="switchGalleryTab('${cat.id}')">
+            <div class="h-64 overflow-hidden relative bg-stone-900">
+              <img src="${cat.cover}" loading="lazy" alt="${cat.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-images"></i>
+                </div>
+              </div>
+              <span class="absolute top-3 left-3 ${cat.color} text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-sm">${cat.badge}</span>
+              <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-expand mr-1"></i> View Album</span>
+            </div>
+            <div class="p-5 text-center">
+              <h5 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-bride-gold transition-colors">${cat.title}</h5>
+              <p class="text-[11px] text-stone-400 font-semibold tracking-wide italic">"${cat.quote}"</p>
+            </div>
+          </div>
+          <div class="gallery-item glass-card-dark rounded-2xl overflow-hidden group cursor-pointer" style="display: none;" data-cat="${cat.id}" data-type="photo" onclick="openPhotoModal('${cat.cover}', '${cat.photoTitle}', '${cat.photoQuote}', '${cat.id}')">
+            <div class="h-64 overflow-hidden relative bg-stone-900">
+              <img src="${cat.cover}" loading="lazy" alt="${cat.photoTitle}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 ${cat.color} text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">${cat.badge}</span>
+            </div>
+          </div>`;
+      });
+      gFilters.innerHTML = filterBtnsHtml;
+      gGrid.innerHTML = gridCardsHtml;
+
+      // 2. Vault Buttons
+      const vContainer = document.getElementById('vaultButtonsContainer');
+      let vaultHtml = '';
+      vaultLinks.forEach(v => {
+        vaultHtml += `<button onclick="openVault('${v.url}')" class="${v.span ? 'col-span-2 sm:col-span-1' : ''} p-3.5 rounded-xl bg-black/40 border border-bride-gold/40 hover:bg-bride-gold hover:text-bride-midnight text-xs text-bride-goldlight font-cinzel font-bold transition shadow-sm"><i class="fa-solid fa-folder mr-1.5 text-bride-gold"></i> ${v.name}</button>`;
+      });
+      vContainer.innerHTML = vaultHtml;
+
+      // 3. Cinema Category Tabs & Cards (Light Section)
+      const cFilters = document.getElementById('cinemaFilters');
+      const cCategories = [{ id: 'all', label: 'All Events' }, { id: 'engagement', label: 'Engagement' }, { id: 'prewedding', label: 'Pre-Wedding' }, { id: 'ring', label: 'Ring Ceremony' }, { id: 'wedding', label: 'Wedding' }];
+      let cFilterHtml = '';
+      cCategories.forEach(c => {
+        const cls = c.id === 'all' ? 'bg-bride-cardinal text-bride-goldlight shadow-lg' : 'bg-white text-stone-700 hover:bg-rose-50';
+        cFilterHtml += `<button id="cinema-btn-${c.id}" onclick="filterCinema('${c.id}')" class="cinema-filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold border border-bride-gold/40 ${cls}">${c.label}</button>`;
+      });
+      cFilters.innerHTML = cFilterHtml;
+
+      const cGrid = document.getElementById('cinemaGrid');
+      let cinemaCardsHtml = '';
+      cinemaData.forEach(item => {
+        if (item.locked) {
+          cinemaCardsHtml += `
+            <div class="cinema-card glass-card-light rounded-3xl overflow-hidden relative cursor-default" data-cat="${item.cat}">
+              <div class="relative aspect-video overflow-hidden border-b border-bride-gold/20">
+                <img src="${item.img}" loading="lazy" alt="${item.title}" class="w-full h-full object-cover filter blur-[3px] brightness-75">
+                <div class="absolute inset-0 bg-black/55 backdrop-blur-[6px] flex flex-col items-center justify-center">
+                  <div class="w-14 h-14 rounded-full bg-bride-velvet/80 text-bride-goldlight flex items-center justify-center text-xl shadow-lg border border-bride-gold/40 mb-3">
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <span class="text-[9px] tracking-[0.3em] font-cinzel text-white uppercase font-bold drop-shadow-md bg-black/40 px-4 py-1 rounded-full border border-white/20">Premiering Soon</span>
+                </div>
+              </div>
+              <div class="p-6 opacity-80">
+                <h4 class="font-cinzel text-lg font-bold text-bride-cardinal mb-1">${item.title}</h4>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4 line-clamp-2">${item.desc}</p>
+                <span class="text-[10px] uppercase tracking-wider text-bride-golddark font-semibold"><i class="fa-solid fa-hourglass-half mr-1"></i> In Post-Production</span>
+              </div>
+            </div>`;
+        } else {
+          cinemaCardsHtml += `
+            <div class="cinema-card glass-card-light rounded-3xl overflow-hidden group cursor-pointer" data-cat="${item.cat}" data-yt="${item.yt}" onclick="launchCinema('${item.yt}')">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://img.youtube.com/vi/${item.yt}/hqdefault.jpg" loading="lazy" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                  <div class="w-16 h-16 rounded-full bg-bride-gold text-bride-midnight flex items-center justify-center text-2xl shadow-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-play ml-1"></i>
+                  </div>
+                </div>
+                <span class="absolute top-3 left-3 ${item.badgeColor} text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">${item.badge}</span>
+                <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-film mr-1"></i> Play</span>
+              </div>
+              <div class="p-6">
+                <h4 class="font-cinzel text-lg font-bold text-bride-cardinal mb-1 group-hover:text-bride-rose transition-colors">${item.title}</h4>
+                <p class="text-xs text-stone-600 leading-relaxed mb-3">${item.desc}</p>
+                <span class="text-[10px] uppercase tracking-wider text-bride-golddark font-semibold"><i class="fa-solid fa-circle-play mr-1"></i> ${item.cta}</span>
+              </div>
+            </div>`;
+        }
+      });
+      cGrid.innerHTML = cinemaCardsHtml;
+    }
+    initDynamicComponents();
+
     // Memory Capsule Rotation
     const memoriesList = [
       { quote: "Golden desert sunsets and city lights mirrored in your eyes, beginning our journey where dreams touch the sky.", location: "Honeymoon in Dubai" },
@@ -1356,25 +1170,25 @@
       locEl.style.opacity = '0';
       setTimeout(() => {
         quoteEl.textContent = `"${mem.quote}"`;
-        locEl.innerHTML = `<i class="fa-solid fa-heart mr-1 text-bride-cardinal"></i> ${mem.location}`;
+        locEl.innerHTML = `<i class="fa-solid fa-heart mr-1 text-bride-rose"></i> ${mem.location}`;
         counterEl.textContent = `${currentMemoryIdx + 1} / ${memoriesList.length}`;
         quoteEl.style.opacity = '1';
         locEl.style.opacity = '1';
       }, 200);
     }
 
-    // Google Drive Vault Opener & Popups
-    function openVault(url) { window.open(url, '_blank'); }
+    // Vaults & Upload Form Links
+    function openVault(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
     function openUploadPopup() {
       window.open('https://docs.google.com/forms/d/e/1FAIpQLScOdQSsFED5G_DI14JJ8H7ISpHM05YpXNU1_f-cxba_trA40w/viewform?usp=publish-editor', 'UploadPhotos', 'width=700,height=800');
     }
 
-    // Web Share API & QR Modal
+    // Share Actions & QR Modal
     function triggerShareAction() {
       if (navigator.share) {
         navigator.share({
           title: 'Barsha & Abhisek — Our Forever Chapter',
-          text: 'Explore memories, ceremonies, and cinematic highlights of Barsha & Abhisek wedding celebration!',
+          text: 'Explore ceremonies, photo albums, and cinematic highlights of Barsha & Abhisek\'s wedding celebration!',
           url: window.location.href
         }).catch(() => {});
       } else {
@@ -1393,11 +1207,11 @@
     }
     function copyCurrentLink() {
       navigator.clipboard.writeText(window.location.href);
-      alert('Website link copied to clipboard!');
       closeShareModal();
+      showToast('Website link copied to clipboard!');
     }
 
-    // Modal History & Back Button Trap
+    // Modal History & Popstate Stack Handling
     let isModalOpen = false;
     function pushModalState() {
       if (!isModalOpen) {
@@ -1422,48 +1236,7 @@
       if (goBack) history.back();
     }
 
-    // Ambient Synthesizer (50% Volume)
-    let audioCtx = null, isPlaying = false, musicTimer = null;
-    function toggleAudio() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (!isPlaying) {
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        startMusicPlayback();
-      } else {
-        stopAudio();
-      }
-    }
-    function startMusicPlayback() {
-      if (musicTimer) clearInterval(musicTimer);
-      isPlaying = true;
-      document.getElementById('audioIcon').className = 'fa-solid fa-volume-high text-base';
-      const chords = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 293.66, 392.00];
-      let idx = 0;
-      musicTimer = setInterval(() => {
-        if (!audioCtx || !isPlaying) return;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(chords[idx % chords.length], audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 1.8);
-        idx++;
-      }, 750);
-    }
-    function stopAudio() {
-      if (musicTimer) clearInterval(musicTimer);
-      isPlaying = false;
-      document.getElementById('audioIcon').className = 'fa-solid fa-music text-base';
-    }
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stopAudio();
-    });
-
-    // Gallery Filter Architecture with Viewport Alignment
+    // Gallery Filtering
     function switchGalleryTab(category) {
       const targetBtn = document.getElementById('btn-' + category);
       if (targetBtn) {
@@ -1472,20 +1245,19 @@
           const offset = filterSection.getBoundingClientRect().top + window.scrollY - 100;
           window.scrollTo({ top: offset, behavior: 'smooth' });
         }
-        targetBtn.click();
+        filterGallery(category);
       }
     }
-
     function filterGallery(category) {
       const items = document.querySelectorAll('#galleryGrid .gallery-item');
       const buttons = document.querySelectorAll('.gallery-btn');
       buttons.forEach(btn => {
         btn.classList.remove('bg-bride-cardinal', 'text-white', 'shadow-md');
-        btn.classList.add('bg-white', 'text-stone-700');
+        btn.classList.add('bg-white/10', 'text-stone-300');
       });
       const activeBtn = document.getElementById('btn-' + category);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-white', 'text-stone-700');
+        activeBtn.classList.remove('bg-white/10', 'text-stone-300');
         activeBtn.classList.add('bg-bride-cardinal', 'text-white', 'shadow-md');
       }
       items.forEach(item => {
@@ -1500,90 +1272,63 @@
     }
 
     // Photo Lightbox
-    let currentPhotoArray = [];
     let currentPhotoIndex = 0;
-
-    function openPhotoModal(src, title, quote) {
-      const allPhotos = Array.from(document.querySelectorAll('#photoDataStore .photo-data'));
-      const activeCard = allPhotos.find(card => card.getAttribute('data-src') === src);
-      if (activeCard) {
-        const category = activeCard.getAttribute('data-cat');
-        currentPhotoArray = allPhotos.filter(card => card.getAttribute('data-cat') === category);
-        currentPhotoIndex = currentPhotoArray.indexOf(activeCard);
-      }
-      const prevBtn = document.getElementById('photoPrevBtn');
-      const nextBtn = document.getElementById('photoNextBtn');
-      if (currentPhotoArray.length <= 1) {
-        if (prevBtn) prevBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
-      } else {
-        if (prevBtn) prevBtn.style.display = 'flex';
-        if (nextBtn) nextBtn.style.display = 'flex';
-      }
-      document.getElementById('modalImg').src = src;
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalQuote').textContent = `"${quote}"`;
+    function openPhotoModal(src, title, quote, catId) {
+      currentPhotoIndex = galleryData.findIndex(item => item.id === catId);
+      if (currentPhotoIndex === -1) currentPhotoIndex = 0;
+      updatePhotoModal();
       document.getElementById('photoModal').classList.remove('hidden');
       document.getElementById('photoModal').classList.add('flex');
       pushModalState();
     }
-
     function closePhotoModal(goBack = true) {
       document.getElementById('photoModal').classList.add('hidden');
       document.getElementById('photoModal').classList.remove('flex');
-      if (goBack) removeModalState();
+      if (goBack) closeAllModals(true);
     }
-
     function updatePhotoModal() {
-      const item = currentPhotoArray[currentPhotoIndex];
-      const src = item.getAttribute('data-src');
-      const title = item.getAttribute('data-title');
-      const quote = item.getAttribute('data-quote');
+      const item = galleryData[currentPhotoIndex];
       const modalImg = document.getElementById('modalImg');
       modalImg.style.opacity = '0';
       const tempImg = new Image();
       tempImg.onload = () => {
-        modalImg.src = src;
-        document.getElementById('modalTitle').textContent = title;
-        document.getElementById('modalQuote').textContent = `"${quote}"`;
+        modalImg.src = item.cover;
+        document.getElementById('modalTitle').textContent = item.photoTitle;
+        document.getElementById('modalQuote').textContent = `"${item.photoQuote}"`;
         modalImg.style.opacity = '1';
       };
-      tempImg.src = src;
+      tempImg.src = item.cover;
     }
-
     function prevPhoto(e) {
       if (e) e.stopPropagation();
-      if (currentPhotoArray.length <= 1) return;
-      currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotoArray.length) % currentPhotoArray.length;
+      currentPhotoIndex = (currentPhotoIndex - 1 + galleryData.length) % galleryData.length;
       updatePhotoModal();
     }
-
     function nextPhoto(e) {
       if (e) e.stopPropagation();
-      if (currentPhotoArray.length <= 1) return;
-      currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotoArray.length;
+      currentPhotoIndex = (currentPhotoIndex + 1) % galleryData.length;
       updatePhotoModal();
     }
 
     // Cinema Hub & YouTube Player with Owner Access
     let ytPlayer = null;
-    let currentVideoArray = [];
+    let playableVideos = cinemaData.filter(v => !v.locked);
     let currentVideoIndex = 0;
     let trackerTimer = null;
     let isUserSeeking = false;
     let uiHideTimer = null;
-    let isOwner = localStorage.getItem('barsha_owner') === 'true' || new URLSearchParams(window.location.search).get('admin') === 'true';
+    let isOwner = safeStorageGet('barsha_owner') === 'true' || new URLSearchParams(window.location.search).get('admin') === 'true';
 
     function filterCinema(category) {
-      const cards = document.querySelectorAll('#cinemaGrid > div');
+      const cards = document.querySelectorAll('#cinemaGrid .cinema-card');
       const buttons = document.querySelectorAll('.cinema-filter-btn');
       buttons.forEach(btn => {
         btn.classList.remove('bg-bride-cardinal', 'text-bride-goldlight');
-        btn.classList.add('bg-black/40', 'text-stone-300');
+        btn.classList.add('bg-white', 'text-stone-700');
       });
       const activeBtn = document.getElementById('cinema-btn-' + category);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-black/40', 'text-stone-300');
+        activeBtn.classList.remove('bg-white', 'text-stone-700');
         activeBtn.classList.add('bg-bride-cardinal', 'text-bride-goldlight');
       }
       cards.forEach(card => {
@@ -1592,27 +1337,23 @@
       });
     }
 
-    function launchCinema(title, desc, youtubeId) {
+    function launchCinema(ytId) {
       stopAudio();
-      const allVideos = Array.from(document.querySelectorAll('.glass-card-dark'));
-      const activeCard = allVideos.find(card => (card.getAttribute('onclick') || '').includes(youtubeId));
-      if (activeCard) {
-        const category = activeCard.getAttribute('data-cat');
-        currentVideoArray = allVideos.filter(card => card.getAttribute('data-cat') === category && card.getAttribute('onclick'));
-        currentVideoIndex = currentVideoArray.indexOf(activeCard);
-      }
-      const prevBtn = document.getElementById('vidPrevBtn');
-      const nextBtn = document.getElementById('vidNextBtn');
-      if (currentVideoArray.length <= 1) {
-        if (prevBtn) prevBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
-      } else {
-        if (prevBtn) prevBtn.style.display = 'flex';
-        if (nextBtn) nextBtn.style.display = 'flex';
-      }
+      currentVideoIndex = playableVideos.findIndex(v => v.yt === ytId);
+      if (currentVideoIndex === -1) currentVideoIndex = 0;
 
-      document.getElementById('cinemaModalTitle').textContent = title;
-      document.getElementById('cinemaModalDesc').textContent = desc;
+      loadActiveCinemaItem();
+      document.getElementById('cinemaModal').classList.remove('hidden');
+      document.getElementById('cinemaModal').classList.add('flex');
+      pushModalState();
+    }
+
+    function loadActiveCinemaItem() {
+      const v = playableVideos[currentVideoIndex];
+      if (!v) return;
+
+      document.getElementById('cinemaModalTitle').textContent = v.title;
+      document.getElementById('cinemaModalDesc').textContent = v.desc;
 
       const visitorWrap = document.getElementById('visitorPlayerWrap');
       const controlsBar = document.getElementById('customControlsBar');
@@ -1622,30 +1363,22 @@
         visitorWrap.classList.add('hidden');
         controlsBar.classList.add('hidden');
         creatorFrame.classList.remove('hidden');
-        creatorFrame.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=1&rel=0`;
+        creatorFrame.src = `https://www.youtube.com/embed/${v.yt}?autoplay=1&controls=1&rel=0`;
       } else {
         creatorFrame.classList.add('hidden');
         creatorFrame.src = "";
         visitorWrap.classList.remove('hidden');
         controlsBar.classList.remove('hidden');
-        if (window.YT && window.YT.Player) initVisitorPlayer(youtubeId);
-        else {
-          const checkAPI = setInterval(() => {
-            if (window.YT && window.YT.Player) {
-              clearInterval(checkAPI);
-              initVisitorPlayer(youtubeId);
-            }
-          }, 100);
-        }
+        if (window.YT && window.YT.Player) initVisitorPlayer(v.yt);
       }
-
       updateOwnerUI();
-      document.getElementById('cinemaModal').classList.remove('hidden');
-      document.getElementById('cinemaModal').classList.add('flex');
-      pushModalState();
     }
 
     function initVisitorPlayer(vidId) {
+      if (ytPlayer && ytPlayer.loadVideoById) {
+        ytPlayer.loadVideoById(vidId);
+        return;
+      }
       const slot = document.getElementById('ytPlayerSlot');
       slot.innerHTML = '<div id="ytIframe"></div>';
       ytPlayer = new YT.Player('ytIframe', {
@@ -1674,25 +1407,35 @@
       uiHideTimer = setTimeout(() => {
         const bar = document.getElementById('customControlsBar');
         if (ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-          if (bar) bar.style.opacity = '0';
+          if (bar) {
+            bar.style.opacity = '0';
+            bar.style.pointerEvents = 'none';
+          }
         }
       }, 3000);
     }
+
     function revealControlBar() {
       const bar = document.getElementById('customControlsBar');
-      if (bar) bar.style.opacity = '1';
+      if (bar) {
+        bar.style.opacity = '1';
+        bar.style.pointerEvents = 'auto';
+      }
       scheduleControlBarHide();
     }
+
     function handleStageClick() {
       const bar = document.getElementById('customControlsBar');
       if (bar && bar.style.opacity === '0') revealControlBar();
       else togglePlayState();
     }
+
     function formatTime(sec) {
       if (!sec || isNaN(sec)) return "0:00";
       sec = Math.floor(sec);
       return `${Math.floor(sec / 60)}:${(sec % 60) < 10 ? '0' : ''}${sec % 60}`;
     }
+
     function startTracking() {
       clearInterval(trackerTimer);
       trackerTimer = setInterval(() => {
@@ -1702,14 +1445,16 @@
           document.getElementById('timeDisplay').textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
           if (dur > 0) document.getElementById('videoScrubber').value = (cur / dur) * 100;
         }
-      }, 350);
+      }, 400);
     }
+
     function togglePlayState() {
-      if (!ytPlayer) return;
+      if (!ytPlayer || !ytPlayer.getPlayerState) return;
       if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
       else ytPlayer.playVideo();
     }
-    function onScrub(percent) {
+
+    function onScrubChange(percent) {
       if (!ytPlayer || !ytPlayer.getDuration) return;
       isUserSeeking = true;
       const dur = ytPlayer.getDuration();
@@ -1719,8 +1464,9 @@
       setTimeout(() => { isUserSeeking = false; }, 300);
       revealControlBar();
     }
+
     function toggleMute() {
-      if (!ytPlayer) return;
+      if (!ytPlayer || !ytPlayer.isMuted) return;
       const icon = document.querySelector('#muteBtn i');
       if (ytPlayer.isMuted()) {
         ytPlayer.unMute();
@@ -1731,6 +1477,7 @@
       }
       revealControlBar();
     }
+
     async function toggleImmersiveFullscreen() {
       const modal = document.getElementById('cinemaModal');
       const fsIcon = document.getElementById('fsIcon');
@@ -1744,6 +1491,7 @@
         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
       }
     }
+
     function closeCinemaModal(goBack = true) {
       if (ytPlayer && ytPlayer.destroy) {
         try { ytPlayer.destroy(); } catch(e){}
@@ -1755,34 +1503,19 @@
       document.getElementById('cinemaModal').classList.remove('flex');
       clearInterval(trackerTimer);
       clearTimeout(uiHideTimer);
-      if (goBack) removeModalState();
+      if (goBack) closeAllModals(true);
     }
 
     function prevVideo(e) {
       if (e) e.stopPropagation();
-      if (currentVideoArray.length <= 1) return;
-      currentVideoIndex = (currentVideoIndex - 1 + currentVideoArray.length) % currentVideoArray.length;
-      playNewVideoIndex();
+      currentVideoIndex = (currentVideoIndex - 1 + playableVideos.length) % playableVideos.length;
+      loadActiveCinemaItem();
     }
+
     function nextVideo(e) {
       if (e) e.stopPropagation();
-      if (currentVideoArray.length <= 1) return;
-      currentVideoIndex = (currentVideoIndex + 1) % currentVideoArray.length;
-      playNewVideoIndex();
-    }
-    function playNewVideoIndex() {
-      const card = currentVideoArray[currentVideoIndex];
-      const match = (card.getAttribute('onclick') || '').match(/launchCinema\('([^']+)'\s*,\s*'([^']+)'\s*,\s*'([^']+)'\)/);
-      if (match) {
-        document.getElementById('cinemaModalTitle').textContent = match[1];
-        document.getElementById('cinemaModalDesc').textContent = match[2];
-        if (isOwner) {
-          document.getElementById('creatorFrame').src = `https://www.youtube.com/embed/${match[3]}?autoplay=1&controls=1&rel=0`;
-        } else {
-          if (ytPlayer && ytPlayer.loadVideoById) ytPlayer.loadVideoById(match[3]);
-          else initVisitorPlayer(match[3]);
-        }
-      }
+      currentVideoIndex = (currentVideoIndex + 1) % playableVideos.length;
+      loadActiveCinemaItem();
     }
 
     function updateOwnerUI() {
@@ -1798,22 +1531,23 @@
         }
       }
     }
+
     function toggleOwnerMode() {
       if (!isOwner) {
         const pass = prompt("Enter Creator PIN to unlock native player controls:", "");
         if (pass === "1234") {
           isOwner = true;
-          localStorage.setItem('barsha_owner', 'true');
-          updateOwnerUI();
-          alert("Creator Access Unlocked!");
+          safeStorageSet('barsha_owner', 'true');
+          loadActiveCinemaItem();
+          showToast("Creator Access Unlocked!");
         } else if (pass !== null) {
-          alert("Incorrect PIN.");
+          showToast("Incorrect PIN.");
         }
       } else {
         isOwner = false;
-        localStorage.setItem('barsha_owner', 'false');
-        updateOwnerUI();
-        alert("Switched back to Visitor Mode.");
+        safeStorageSet('barsha_owner', 'false');
+        loadActiveCinemaItem();
+        showToast("Switched back to Visitor Mode.");
       }
     }
 
@@ -1830,8 +1564,8 @@
         else if (!document.getElementById('cinemaModal').classList.contains('hidden')) prevVideo();
       }
     }
-    document.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
-    document.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); });
+    document.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
+    document.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
     document.addEventListener('keydown', e => {
       if (!isModalOpen) return;
       if (e.key === 'Escape') closeAllModals(true);
@@ -1874,14 +1608,19 @@
     }
     function postBlessing(e) {
       e.preventDefault();
+      // Honeypot check
+      if (document.getElementById('bWebsiteTrap').value) return;
+
       const name = document.getElementById('bName').value.trim();
       const msg = document.getElementById('bMsg').value.trim();
       if (!name || !msg) return;
+
       const submitBtn = document.getElementById('submitBlessingBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>Preserving Blessing...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
       const dateFormatted = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
       renderBlessingCard(name, msg, dateFormatted);
+
       fetch(GOOGLE_SHEET_WEBAPP_URL, {
         method: "POST",
         mode: "no-cors",
@@ -1891,11 +1630,53 @@
         document.getElementById('blessingForm').reset();
         submitBtn.disabled = false;
         submitBtn.innerHTML = `<span>Bestow Blessing</span> <i class="fa-solid fa-feather"></i>`;
+        showToast("Your heartfelt blessing has been recorded!");
       });
     }
     fetchSavedBlessings();
 
-    // PWA & iOS Safari Install Prompt
+    // Ambient Synthesizer (50% Volume)
+    let audioCtx = null, isPlaying = false, musicTimer = null;
+    function toggleAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (!isPlaying) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        startMusicPlayback();
+      } else {
+        stopAudio();
+      }
+    }
+    function startMusicPlayback() {
+      if (musicTimer) clearInterval(musicTimer);
+      isPlaying = true;
+      document.getElementById('audioIcon').className = 'fa-solid fa-volume-high text-base';
+      const chords = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 293.66, 392.00];
+      let idx = 0;
+      musicTimer = setInterval(() => {
+        if (!audioCtx || !isPlaying) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(chords[idx % chords.length], audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.8);
+        idx++;
+      }, 750);
+    }
+    function stopAudio() {
+      if (musicTimer) clearInterval(musicTimer);
+      isPlaying = false;
+      document.getElementById('audioIcon').className = 'fa-solid fa-music text-base';
+    }
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopAudio();
+    });
+
+    // PWA & iOS Safari Prompt
     let deferredPrompt;
     const installAppBtn = document.getElementById('installAppBtn');
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -1905,11 +1686,10 @@
       if (installAppBtn) {
         installAppBtn.classList.remove('hidden');
         installAppBtn.addEventListener('click', () => {
-          alert("To install this app on your iPhone:\n\n1. Tap the Share button at the bottom of Safari.\n2. Scroll down and tap 'Add to Home Screen'.");
+          showToast("iPhone: Tap Share in Safari, then 'Add to Home Screen'.");
         });
       }
     }
-
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       deferredPrompt = e;
@@ -1926,12 +1706,7 @@
       }
     });
 
-    window.addEventListener('appinstalled', () => {
-      if (installAppBtn) installAppBtn.classList.add('hidden');
-      deferredPrompt = null;
-    });
-
-    // Falling Petals Canvas
+    // Falling Rose Petals Canvas
     const canvas = document.getElementById('petalCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth, height = canvas.height = window.innerHeight;
