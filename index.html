@@ -1676,35 +1676,67 @@
       if (document.hidden) stopAudio();
     });
 
-    // PWA & iOS Safari Prompt
-    let deferredPrompt;
+// ================= ROBUST PWA INSTALL CHECK =================
+    let deferredPrompt = null;
     const installAppBtn = document.getElementById('installAppBtn');
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-    if (isIOS && !isStandalone) {
-      if (installAppBtn) {
-        installAppBtn.classList.remove('hidden');
-        installAppBtn.addEventListener('click', () => {
-          showToast("iPhone: Tap Share in Safari, then 'Add to Home Screen'.");
-        });
+    // 1. Check if the app is currently running in standalone/installed mode
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches 
+                      || window.navigator.standalone === true 
+                      || document.referrer.includes('android-app://');
+
+    // 2. Check platform
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    function setupInstallButton() {
+      if (!installAppBtn) return;
+
+      // RULE 1: If already installed / running inside the app, NEVER show the button
+      if (isStandalone) {
+        installAppBtn.classList.add('hidden');
+        return;
       }
+
+      // RULE 2: If NOT installed, make sure the button is visible for visitors to install
+      installAppBtn.classList.remove('hidden');
+
+      installAppBtn.onclick = async () => {
+        if (deferredPrompt) {
+          // Native Chromium / Android prompt
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            installAppBtn.classList.add('hidden');
+          }
+          deferredPrompt = null;
+        } else if (isIOS) {
+          // iOS Safari instructions
+          showToast("To install on iPhone: Tap 'Share' in Safari, then 'Add to Home Screen'.");
+        } else {
+          // Desktop Chrome/Edge or other browsers
+          showToast("To install: Click the install icon in your browser's address bar or menu (⋮).");
+        }
+      };
     }
-    window.addEventListener('beforeinstallprompt', e => {
+
+    // Android / Chromium install availability event
+    window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      if (installAppBtn) {
+      if (!isStandalone && installAppBtn) {
         installAppBtn.classList.remove('hidden');
-        installAppBtn.addEventListener('click', async () => {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') installAppBtn.classList.add('hidden');
-            deferredPrompt = null;
-          }
-        });
       }
     });
+
+    // Hide instantly as soon as installation completes
+    window.addEventListener('appinstalled', () => {
+      if (installAppBtn) installAppBtn.classList.add('hidden');
+      deferredPrompt = null;
+      showToast("Wedding App installed successfully!");
+    });
+
+    // Run check on page load
+    setupInstallButton();
 
     // Falling Rose Petals Canvas
     const canvas = document.getElementById('petalCanvas');
