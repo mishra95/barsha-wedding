@@ -1011,40 +1011,59 @@
     });
 
     // Central Data Arrays (Clean Data-Driven Architecture)
-    const galleryData = [
+const galleryData = [
       { id: 'engagement', label: 'Engagement', badge: 'Engagement 🌿', color: 'bg-bride-cardinal', cover: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80', title: 'Engagement Ceremony', quote: 'Where two families became one, and forever began.', photoTitle: 'Sacred Alliance', photoQuote: 'A beautiful promise made in the presence of our loved ones.' },
       { id: 'ring', label: 'Ring Ceremony', badge: 'Ring Ceremony 💍', color: 'bg-purple-900', cover: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=80', title: 'Ring Exchange', quote: 'A sparkling promise worn on the finger and kept in the heart.', photoTitle: 'The Golden Promise', photoQuote: 'A perfect circle of trust, reflecting endless love.' },
-      { id: 'bardhara', label: 'Bardhara', badge: 'Bardhara 🪔', color: 'bg-amber-800', cover: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80', title: 'Bardhara Ceremony', quote: 'Traditional welcoming of the divine union with elder blessings.', photoTitle: 'Auspicious Bardhara', photoQuote: 'Honoring sacred Odia customs with prayers.' },
-      { id: 'haldi', label: 'Haldi', badge: 'Haldi 🌼', color: 'bg-amber-700', cover: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80', title: 'Haldi Celebration', quote: 'Drenched in golden turmeric, smiles, and endless sunshine.', photoTitle: 'Golden Radiance', photoQuote: 'Blessings of yellow turmeric from loving family.' },
       { id: 'mehendi', label: 'Mehendi', badge: 'Mehendi 🌿', color: 'bg-emerald-700', cover: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80', title: 'Mehendi Evening', quote: 'Intricate henna patterns woven with eternal devotion.', photoTitle: 'Bridal Henna', photoQuote: 'Intricate patterns gracing the bride’s palms.' },
+      { id: 'haldi', label: 'Haldi', badge: 'Haldi 🌼', color: 'bg-amber-700', cover: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80', title: 'Haldi Celebration', quote: 'Drenched in golden turmeric, smiles, and endless sunshine.', photoTitle: 'Golden Radiance', photoQuote: 'Blessings of yellow turmeric from loving family.' },
+      { id: 'sangeet', label: 'Sangeet', badge: 'Sangeet 🪘', color: 'bg-indigo-900', cover: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80', title: 'Sangeet Musical Night', quote: 'Rhythmic beats, joyful steps, and laughter echoing into the night.', photoTitle: 'Melodic Celebration', photoQuote: 'Dancing our hearts out surrounded by family cheer.' },
       { id: 'marriage', label: 'Marriage', badge: 'Marriage 🌸', color: 'bg-bride-cardinal', cover: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80', title: 'Marriage Ceremony', quote: 'Two souls, seven pheras, and a lifetime of togetherness.', photoTitle: 'Sacred Mandap', photoQuote: 'The holy pheras by the whispering tides of Gopalpur.' },
-      { id: 'pala', label: 'Pala', badge: 'Pala 🪘', color: 'bg-indigo-900', cover: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80', title: 'Pala Performance', quote: 'Folk cultural recital singing glories of Lord Satyapir.', photoTitle: 'Sacred Pala', photoQuote: 'Spiritual stories and rhythmic cymbals.' },
-      { id: 'reception', label: 'Reception', badge: 'Reception ✨', color: 'bg-blue-900', cover: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80', title: 'Reception Ceremony', quote: 'A magical night celebrating the beginning of our forever.', photoTitle: 'Grand Reception', photoQuote: 'Surrounded by warmth, smiles, and extended family.' },
-      { id: 'anniversary', label: '1st Anniversary', badge: '1st Anniversary 🥂', color: 'bg-purple-900', cover: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80', title: '1st Anniversary', quote: '365 days of holding hands and an eternity to go.', photoTitle: 'One Year Reunion', photoQuote: 'Celebrating our milestone surrounded by joy.' }
+      { id: 'reception', label: 'Reception', badge: 'Reception ✨', color: 'bg-blue-900', cover: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80', title: 'Reception Ceremony', quote: 'A magical night celebrating the beginning of our forever.', photoTitle: 'Grand Reception', photoQuote: 'Surrounded by warmth, smiles, and extended family.' }
     ];
 
     const vaultLinks = [
       { name: 'Engagement', url: 'https://drive.google.com/drive/folders/12up7BLdUS_y4T-0MFwGs41QWGajo3rVh?usp=sharing' },
       { name: 'Ring Ceremony', url: 'https://drive.google.com/drive/folders/1Xk--ewNtaMtD_lhp-keJPA9HmkikKFP1?usp=sharing' },
-      { name: 'Bardhara', url: 'https://drive.google.com/drive/folders/1VkuU7tAddWIY57awvMOmiNTO2abBawQs?usp=sharing' },
-      { name: 'Haldi', url: 'https://drive.google.com/drive/folders/1kPljzIYm5Xi3vgxW4_st7cxBk7psPes7?usp=sharing' },
       { name: 'Mehendi', url: 'https://drive.google.com/drive/folders/1xjs7aE3fb6fSf4CHwT2sWUZF3kpy2XmL?usp=sharing' },
+      { name: 'Haldi', url: 'https://drive.google.com/drive/folders/1kPljzIYm5Xi3vgxW4_st7cxBk7psPes7?usp=sharing' },
+      { name: 'Sangeet', url: 'https://drive.google.com/drive/folders/1sKY1P6OJ-JAQkrK1YPLeqtQiLd6hSecy?usp=sharing' },
       { name: 'Marriage', url: 'https://drive.google.com/drive/folders/1mze05KvA6abneDeb5WDquVcLQGulL5ho?usp=sharing' },
-      { name: 'Pala', url: 'https://drive.google.com/drive/folders/1sKY1P6OJ-JAQkrK1YPLeqtQiLd6hSecy?usp=sharing' },
-      { name: 'Reception', url: 'https://drive.google.com/drive/folders/1U67RbbZecvRUEKkNHLIMRogmwupRpg0K?usp=sharing' },
-      { name: '1st Anniversary', url: 'https://drive.google.com/drive/folders/1ZUUtBCZpNpwBvOjGNalbDXy4L5J7zZJw?usp=sharing', span: true }
+      { name: 'Reception', url: 'https://drive.google.com/drive/folders/1U67RbbZecvRUEKkNHLIMRogmwupRpg0K?usp=sharing' }
     ];
 
-    const cinemaData = [
+const cinemaData = [
+      // Engagement
       { cat: 'engagement', title: 'Teaser of Engagement', desc: 'A cinematic glimpse into the sacred rituals, heartfelt blessings, and the beginning of our journey.', yt: 'iWriHLbstAg', badge: 'Teaser • 4K HDR', badgeColor: 'bg-blue-900', cta: 'Watch Teaser' },
       { cat: 'engagement', title: 'Highlights of Engagement', desc: 'Relive the joy, tears, and beautiful family moments that made our Nirbandha unforgettable.', yt: 'SXwykKF85Bo', badge: 'Highlights • 4K', badgeColor: 'bg-blue-900', cta: 'Watch Highlights' },
-      { cat: 'engagement', title: 'Engagement Ceremony', desc: 'The complete, immersive experience of our formal betrothal, capturing every sacred chant and blessing.', locked: true, img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'engagement', title: 'Engagement Ceremony Full', desc: 'The complete, immersive experience of our formal betrothal, capturing every sacred chant and blessing.', locked: true, img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80' },
+
+      // Pre-Wedding
       { cat: 'prewedding', title: 'Teaser of Pre-Wedding', desc: 'A beautiful glimpse into the quiet, magical moments that sparked our forever.', yt: '6Tr09QwXOAo', badge: 'Teaser • 4K HDR', badgeColor: 'bg-emerald-900', cta: 'Watch Teaser' },
       { cat: 'prewedding', title: 'Pre-Wedding Shoot', desc: 'Our official pre-wedding motion picture, a scenic journey of love, laughter, and cinematic storytelling.', yt: '4DvobIfKaE4', badge: 'Official Film • 4K', badgeColor: 'bg-emerald-900', cta: 'Watch Film' },
+
+      // Ring Ceremony
       { cat: 'ring', title: 'Teaser for Ring Ceremony', desc: 'A dazzling preview of an evening filled with sparkling rings, warm toasts, and joyous celebrations.', locked: true, img: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80' },
-      { cat: 'wedding', title: 'Teaser of Wedding Ceremony', desc: 'A tiny glimpse of the biggest day of our lives, wrapped in ocean breeze and love.', yt: 'qY6Kui1D4qk', badge: 'Teaser • 4K HDR', badgeColor: 'bg-red-900', cta: 'Watch Teaser' },
-      { cat: 'wedding', title: 'Highlights of Wedding', desc: 'All our favorite moments stitched together into a beautiful memory of forever.', locked: true, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80' },
-      { cat: 'wedding', title: 'Wedding Ceremony Full', desc: 'The entire unedited magic of the day two souls officially became one.', locked: true, img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80' }
+      { cat: 'ring', title: 'Highlights of Ring Ceremony', desc: 'Unforgettable moments of laughter, family toasts, and musical cheers at Hotel Radha Grand.', locked: true, img: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80' },
+
+      // Mehendi
+      { cat: 'mehendi', title: 'Teaser of Mehendi Ceremony', desc: 'A vibrant glimpse of intricate bridal henna patterns woven to the rhythm of dholak beats.', locked: true, img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'mehendi', title: 'Highlights of Mehendi', desc: 'Sisterly songs, laughter, and fragrant henna celebrations at Hotel The Residency.', locked: true, img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80' },
+
+      // Haldi
+      { cat: 'haldi', title: 'Teaser of Haldi Ceremony', desc: 'Golden morning bathed in turmeric blessings, bright smiles, and coastal breezes.', locked: true, img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'haldi', title: 'Highlights of Haldi', desc: 'Playful turmeric showers and elder blessings beside the Gopalpur shores.', locked: true, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80' },
+
+      // Sangeet
+      { cat: 'sangeet', title: 'Teaser of Sangeet Ceremony', desc: 'Electric dance moves, sparkling lights, and high-energy musical celebration.', locked: true, img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'sangeet', title: 'Highlights of Sangeet Night', desc: 'Grand family choreography, heartfelt cheers, and non-stop celebration on the dance floor.', locked: true, img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80' },
+
+      // Marriage
+      { cat: 'marriage', title: 'Teaser of Wedding Ceremony', desc: 'A tiny glimpse of the biggest day of our lives, wrapped in ocean breeze and love.', yt: 'qY6Kui1D4qk', badge: 'Teaser • 4K HDR', badgeColor: 'bg-red-900', cta: 'Watch Teaser' },
+      { cat: 'marriage', title: 'Highlights of Wedding', desc: 'All our favorite sacred moments, Hastaganti, and Vedic pheras stitched together into forever.', locked: true, img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80' },
+
+      // Reception
+      { cat: 'reception', title: 'Teaser of Reception Ceremony', desc: 'A grand preview of an elegant evening surrounded by extended family, banquet, and smiles.', locked: true, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80' },
+      { cat: 'reception', title: 'Highlights of Reception', desc: 'Heartfelt greetings, royal banquet festivities, and unforgettable memories.', locked: true, img: 'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=800&q=80' }
     ];
 
     // Build Dynamic Gallery & Cinema
@@ -1097,7 +1116,17 @@
 
       // 3. Cinema Category Tabs & Cards (Light Section)
       const cFilters = document.getElementById('cinemaFilters');
-      const cCategories = [{ id: 'all', label: 'All Events' }, { id: 'engagement', label: 'Engagement' }, { id: 'prewedding', label: 'Pre-Wedding' }, { id: 'ring', label: 'Ring Ceremony' }, { id: 'wedding', label: 'Wedding' }];
+      const cCategories = [
+        { id: 'all', label: 'All Events' },
+        { id: 'engagement', label: 'Engagement' },
+        { id: 'prewedding', label: 'Pre-Wedding' },
+        { id: 'ring', label: 'Ring Ceremony' },
+        { id: 'mehendi', label: 'Mehendi' },
+        { id: 'haldi', label: 'Haldi' },
+        { id: 'sangeet', label: 'Sangeet' },
+        { id: 'marriage', label: 'Marriage' },
+        { id: 'reception', label: 'Reception' }
+      ];
       let cFilterHtml = '';
       cCategories.forEach(c => {
         const cls = c.id === 'all' ? 'bg-bride-cardinal text-bride-goldlight shadow-lg' : 'bg-white text-stone-700 hover:bg-rose-50';
